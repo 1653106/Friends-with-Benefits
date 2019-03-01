@@ -1,0 +1,59 @@
+a:hover {
+    color: #58C9EF;
+}
+
+.dropdown-item:active {
+    background-color: #58C9EF;
+}
+
+.navbar#bottom {
+    border-bottom: 2px solid #58C9EF;
+}
+
+.dropdown-menu {
+    border: 1px solid #FFAD58;
+}
+
+.logo {
+    width: 100px;
+}
+
+.banner {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center center;
+}
+
+.icon {
+    width: 15px;
+}
+
+.card-friend {
+    border: 1px solid #58C9EF;
+    border-radius: 5px;
+}
+
+.btn-custom {
+    background-color: #FFAD58;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-refresh {
+    float: right;
+}
+
+.bg-custom {
+    background-color: #58C9EF;
+}
+
+#navright li>a {
+    padding: 20px;
+}
+
+#classinfo {
+    border: 2px solid white;
+}
