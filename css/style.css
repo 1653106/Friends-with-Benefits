@@ -34,6 +34,7 @@ a:hover {
 .card-friend {
     border: 1px solid #58C9EF;
     border-radius: 5px;
+    box-shadow: 0 5px 5px grey;
 }
 
 .btn-custom {
