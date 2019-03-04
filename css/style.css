@@ -34,12 +34,20 @@ a:hover {
 .card-friend {
     border: 1px solid #58C9EF;
     border-radius: 5px;
+    box-shadow: 0 5px 5px grey;
 }
 
 .btn-custom {
     background-color: #FFAD58;
     color: white;
     border-radius: 5px;
+}
+
+.btn-custom-reverse {
+    background-color: white;
+    color: #FFAD58;
+    border-radius: 5px;
+    border-color: #FFAD58;
 }
 
 .btn-refresh {
