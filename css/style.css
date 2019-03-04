@@ -43,6 +43,13 @@ a:hover {
     border-radius: 5px;
 }
 
+.btn-custom-reverse {
+    background-color: white;
+    color: #FFAD58;
+    border-radius: 5px;
+    border-color: #FFAD58;
+}
+
 .btn-refresh {
     float: right;
 }
