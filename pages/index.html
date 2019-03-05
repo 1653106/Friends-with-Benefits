@@ -40,16 +40,15 @@
 
                 <a href="search.html" class="btn btn-sm btn-custom ml-3" style="font-size: 1.25em; width: 100px;" role="button">Filter</a>
 
-                <div class="collapse navbar-collapse justify-content-end">
+                <div class="navbar-collapse justify-content-end">
                     <ul class="navbar-nav mt-2 mt-lg-0" id="navright" style="font-size: 1.25em;">
                         <li class="nav-item active dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <a class="dropdown-item" href="#">Online</a>
-                                <a class="dropdown-item" href="#">Hang out</a>
+                                <a class="dropdown-item" href="#">Gaming</a>
                             </div>
                         </li>
-                        <li class="nav-item active my-3">
+                        <li class="nav-item active mt-3 ml-3">
                             <button class="btn btn-custom" type="button" data-toggle="modal" data-target="#loginmodal">Log in</button>
                         </li>
                         <li class="nav-item">
@@ -75,8 +74,29 @@
                     <input type="password" class="form-control my-2" placeholder="Enter password">
                     <div style="text-align: end"><a href="#"><i><u>forgot password?</u></i></a></div>
                     <p style="text-align: end">
-                        <input type="submit" class="btn btn-custom my-2" value="LOGIN">
-                        <input type="submit" class="btn btn-custom my-2" value="REGISTER" style="background-color: #58C9EF">
+                        <a href="index-login.html"><input type="submit" class="btn btn-custom my-2" value="LOGIN"></a>
+                        <input type="button" class="btn btn-custom my-2" value="REGISTER" style="background-color: #58C9EF" data-dismiss="modal" data-toggle="modal" data-target="#registermodal">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Register modal-->
+    <div class="modal fade" id="registermodal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-custom text-white">
+                    <h3 class="modal-title">REGISTER</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="text" class="form-control my-2" placeholder="Enter username">
+                    <input type="password" class="form-control my-2" placeholder="Enter password">
+                    <input type="password" class="form-control my-2" placeholder="Retype password">
+                    <p style="text-align: end">
+                        <input type="submit" class="btn btn-custom my-2" value="REGISTER">
                     </p>
                 </div>
             </div>
