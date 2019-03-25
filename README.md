@@ -1,9 +1,36 @@
-# Friends with benefits web application
+# PTUDW-16CLC2-Nhom02
 
-## About
+## Friends with benefits web application
 
-## How to use
+## Checklist  
+A. Phân hệ FrontEnd (Giao diện tĩnh, chưa cần chức năng)  
+
+1. Trang chủ: Liệt kê các dịch vụ (sản phẩm) mà trang web cung cấp với dữ liệu mẫu code cứng (chưa cần lấy từ csdl) X  
+
+2. Trang chi tiết sản phẩm. X  
+
+3. Trang giỏ hàng: Liệt kê các sản phẩm trong giỏ hàng, để sẵn giao diện các nút bấm để thêm , bớt số lượng (không có) 
+
+4. Trang About: thông tin liên hệ X  
+
+B. Phân hệ admin: (giao diện tĩnh, chưa cần chức năng)  
+
+1. Trang dashboard: cho thấy tổng quát toàn bộ hệ thống: tổng số lượng sản phẩm, tổng số lượng đơn hàng, biểu đồ X  
+
+2. Trang profile của admin: tối thiểu cần có Họ tên, Email, đổi mật khẩu X  
+
+3. Trang quản lí loại sản phẩm và sản phẩm: (Gộp chung ở đây), chỉ cần thiết kế giao diện có phân trang, có thể bỏ qua search, sort và filter. X  
+
+4. Trang quản lí các đơn hàng: liệt kê danh sách các đơn hàng với trạng thái tương ứng. X  
+
+5. Trang chi tiết đơn hàng X   
+
+6. Trang thống kê với các biểu đồ. Chú ý cần thiết kế giao diện chọn 2 ngày bắt dầu và kết thúc để truy vấn csdl tạo thống kê. X  
 
 ## Collaborators
-[HSIAO](https://github.com/1653106)
-[phansonloc1999xx](https://github.com/phansonloc1999)
+[Đỗ Mạnh Tiến](https://github.com/1653087)  
+[Đinh Trần Toản](https://github.com/1653092)  
+[HSIAO (Tiu) Kiều Vỹ](https://github.com/1653106)  
+
+## Figma
+https://www.figma.com/file/UPHxujAaTOJJ2dpketINcGVP/F.w.B

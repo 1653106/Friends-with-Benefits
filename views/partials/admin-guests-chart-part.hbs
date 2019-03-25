@@ -1,0 +1,71 @@
+<!--Info Part-->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-4" style="border-right-style: solid; border-right-color: #58c9ef">
+                <div class="text-center" style="background: white">
+                    <img class="img-thumbnail my-3" style="border-radius:10px" src="../images/avatar.jpeg" alt="avatar">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="container">
+                    <div class="row my-3">
+                        <div class="col-sm-12 col-md-3">
+                            <a href="admin-dashboard"><button type="button" class="btn btn-custom" style="width: 80%">Dashboard</button></a>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <a href="admin-profile"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Profile</button></a>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <a href="admin-account"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Account</button></a>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <a href="admin-transaction"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Transaction</button></a>
+                        </div>
+                    </div>
+
+                    <!-- Calendar -->
+                    <div class="bootstrap-iso">
+                        <div class="container-fluid">
+                            <div class="row">
+    
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <label class="control-label " for="fromdate">From date:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input class="form-control" id="fromdate" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                                    </div>
+                                </div>
+    
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <label class="control-label " for="todate">From date:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input class="form-control" id="todate" name="date" placeholder="MM/DD/YYYY" type="text"/>
+                                        </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chart -->
+                    <div class="container">
+                        <div class="row">
+                            <h2><b>Guests<br></b></h2>
+                        </div>
+                    </div>
+
+                    <div class="container py-3">
+                        <h3 class="text-center"><b>Statitics</b></h3>
+                        <div class="row">
+                            <h5>Guests</h5>
+                            <canvas id="guests-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
