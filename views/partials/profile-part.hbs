@@ -1,0 +1,141 @@
+<!--Info Part-->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-4" style="border-right-style: solid; border-right-color: #58c9ef">
+                <div class="text-center" style="background: white">
+                    <img class="img-thumbnail my-3" style="border-radius:10px" src="../images/avatar.jpeg" alt="avatar">
+                    <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                        <div>Friend hired</div>
+                        <div>10</div>
+                    </div>
+                    <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                        <div>Money spent</div>
+                        <div>500.000 VNĐ</div>
+                    </div>
+                    <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                        <div>Account balance</div>
+                        <div>100.000 VNĐ <button type="button" class="btn-hidden" data-toggle="modal" data-target="#addfundmodal"><i class="fa fa-plus-circle" style="color: #FFAD58"></i></button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="container">
+                    <div class="row my-3">
+                        <div class="col-sm-12 col-md-4">
+                            <a href="settings-profile"><button type="button" class="btn" style="background: #FFAD58;color:white; width: 80%">Profile</button></a>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <a href="settings-transaction"><button type="button" class="btn" style="background: white;color:#58c9ef; width: 80%;border-style: solid;border-color: #58c9ef">Transaction history</button></a>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <a href="settings-friend"><button type="button" class="btn" style="background: white;color:#58c9ef; width: 80%;border-style: solid;border-color: #58c9ef">FRIEND Settings</button></a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <form action="#">
+                            <div class="form-group row">
+                                <label for="usr" class="control-label col-sm-2"><b>Name:</b></label>
+                                <div class="col-sm-10"><input type="text" class="form-control" id="usr"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="sex" class="control-label col-sm-2"><b>Gender:</b></label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="sex" id="sex">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="LGBT">LGBT</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="city" class="control-label col-sm-2"><b>City/Province:</b></label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="city" id="city">
+                                            <option value="hanoi">Hà Nội</option>
+                                            <option value="hochiminh">TP HCM</option>
+                                            <option value="haiphong">Hải Phòng</option>
+                                            <option value="danang">Đà Năng</option>
+                                            <option value="cantho">Cần Thơ</option>
+                                            <option value="angiang">An Giang</option>
+                                            <option value="bariavungtau">Bà Rịa-Vũng Tàu</option>
+                                            <option value="bacgiang">Bắc Giang</option>
+                                            <option value="backan">Bắc Kạn</option>
+                                            <option value="baclieu">Bạc Liêu</option>
+                                            <option value="bacninh">Bắc Ninh</option>
+                                            <option value="bentre">Bến Tre</option>
+                                            <option value="binhdinh">Bình Định</option>
+                                            <option value="binhduong">Bình Dương</option>
+                                            <option value="binhphuoc">Bình Phước</option>
+                                            <option value="binhthuan">Bình Thuận</option>
+                                            <option value="camau">Cà Mau</option>
+                                            <option value="caobang">Cao Bằng</option>
+                                            <option value="daklak">Đắk Lắk</option>
+                                            <option value="daknong">Đắk Nông</option>
+                                            <option value="dienbien">Điện Biên</option>
+                                            <option value="dongnai">Đồng Nai</option>
+                                            <option value="dongthap">Đồng Tháp</option>
+                                            <option value="gialai">Gia Lai</option>
+                                            <option value="hagiang">Hà Giang</option>
+                                            <option value="hanam">Hà Nam</option>
+                                            <option value="hatinh">Hà Tĩnh</option>
+                                            <option value="haiduong">Hải Dương</option>
+                                            <option value="haugiang">Hậu Giang</option>
+                                            <option value="hoabinh">Hoà Bình</option>
+                                            <option value="hungyen">Hưng Yên</option>
+                                            <option value="khanhhoa">Khánh Hoà</option>
+                                            <option value="kiengiang">Kiên Giang</option>
+                                            <option value="kontum">Kon Tum</option>
+                                            <option value="laichau">Lai Châu</option>
+                                            <option value="lamdong">Lâm Đồng</option>
+                                            <option value="langson">Lạng Sơn</option>
+                                            <option value="laocai">Lào Cai</option>
+                                            <option value="longan">Long An</option>
+                                            <option value="namdinh">Nam Định</option>
+                                            <option value="nghean">Nghệ An</option>
+                                            <option value="ninhbinh">Ninh Bình</option>
+                                            <option value="ninhthuan">Ninh Thuận</option>
+                                            <option value="phutho">Phú Thọ</option>
+                                            <option value="quangbinh">Quảng Bình</option>
+                                            <option value="quangnam">Quảng Nam</option>
+                                            <option value="quangngai">Quảng Ngãi</option>
+                                            <option value="quangninh">Quảng Ninh</option>
+                                            <option value="quangtri">Quảng Trị</option>
+                                            <option value="soctrang">Sóc Trăng</option>
+                                            <option value="sonla">Sơn La</option>
+                                            <option value="tayninh">Tây Ninh</option>
+                                            <option value="thaibinh">Thái Bình</option>
+                                            <option value="thainguyen">Thái Nguyên</option>
+                                            <option value="thanhhoa">Thanh Hoá</option>
+                                            <option value="thuathienhue">Thừa Thiên Huế</option>
+                                            <option value="tiengiang">Tiền Giang</option>
+                                            <option value="travinh">Trà Vinh</option>
+                                            <option value="tuyenquang">Tuyên Quang</option>
+                                            <option value="vinhlong">Vĩnh Long</option>
+                                            <option value="vinhphuc">Vĩnh Phúc</option>
+                                            <option value="yenbai">Yên Bái</option>
+                                            <option value="phuyen">Phú Yên</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone" class="control-label col-sm-2"><b>Phone:</b></label>
+                                <div class="col-sm-10"><input type="text" class="form-control" id="phone"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="control-label col-sm-2"><b>Email:</b></label>
+                                <div class="col-sm-10"><input type="text" class="form-control" id="email"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="link" class="control-label col-sm-2"><b>Link:</b></label>
+                                <div class="col-sm-10"><input type="text" class="form-control" id="link"></div>
+                            </div>
+                            <div class="form-group row col-sm-12 justify-content-end">
+                                <input type="submit" class="btn btn-custom-primary" value="Update">
+                                <input type="button" class="btn btn-custom mx-2" value="Change password" data-toggle="modal" data-target="#changepwmodal">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

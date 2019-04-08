@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Friends with Benefits</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--Style CSS-->
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <!--Header-->
+    <div class="container-fluid bg-custom">
+        <nav class="navbar navbar-expand-sm navbar-dark container" id="bottom">
+            <a class="navbar-brand" href="#"><img class="logo" src="../images/F.w.B-logo-nowatermark-white.png" alt="logo"></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <div class="navbar-collapse justify-content-end">
+                    <ul class="navbar-nav mt-2 mt-lg-0" id="navright" style="font-size: 1.25em;">
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="#">Gaming</a>
+                            </div>
+                        </li>
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="../images/avatar.jpeg" alt="avatar" class="avatar-crop"> Username
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="settings-profile.html">Profile settings</a>
+                                <a class="dropdown-item" href="admin-account.html">Account management</a>
+                                <a class="dropdown-item" href="admin-transaction.html">Transaction management</a>
+                                <a class="dropdown-item" href="index.html"><img src="../images/logout.png" alt="logout" style="width: 20px"> Log out</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="color: #FFAD58"><b>ENG</b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--Info Part-->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-4" style="border-right-style: solid; border-right-color: #58c9ef">
+                <div class="text-center" style="background: white">
+                    <img class="img-thumbnail my-3" style="border-radius:10px" src="../images/avatar.jpeg" alt="avatar">
+                    <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                        <div>Total transactions today</div>
+                        <div>50</div>
+                    </div>
+                    <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                        <div>Total reports</div>
+                        <div>0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="container">
+                    <div class="row my-3">
+                        <div class="col-sm-12 col-md-3">
+                            <p class="btn btn-custom">Transaction details</p>
+                        </div>
+
+                        <div class="col-sm-12 col-md-2">
+                            <a href="admin-transaction.html"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Back</button></a>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="form-group row">
+                            <label for="transid" class="control-label col-sm-3"><b>ID:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="transid" placeholder="1" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="datecreated" class="control-label col-sm-3"><b>Date created:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="datecreated" placeholder="dd/mm/yyyy" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="hirer" class="control-label col-sm-3"><b>Hirer:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="hirer" placeholder="Hsiao Kieu Vy" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="friend" class="control-label col-sm-3"><b>FRIEND:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="friend" placeholder="Love Grayson" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="time" class="control-label col-sm-3"><b>Time (hour):</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="time" placeholder="5" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="priceh" class="control-label col-sm-3"><b>Price/h:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="priceh" placeholder="1.000.000" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="total" class="control-label col-sm-3"><b>Total:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="total" placeholder="5.000.000" readonly></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="state" class="control-label col-sm-3"><b>State:</b></label>
+                            <div class="col-sm-9"><input type="text" class="form-control" id="state" placeholder="Completed" readonly></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <div class="container-fluid bg-custom text-white px-0 pt-3">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col">
+                    <h2><b>Quick links</b></h2>
+                    <nav class="navbar navbar-dark">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Online</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hang out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Filter</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col">
+                    <a href="about-login.html" style="color: white">
+                        <h2><b>About us</b></h2>
+                    </a>
+                    <ul>
+                        <li>1653087 - Đỗ Mạnh Tiến</li>
+                        <li>1653092 - Đinh Trần Toản</li>
+                        <li>1653106- Hsiao (Tiu) Kiều Vỹ</li>
+                    </ul>
+                    <div class="text-center" id="classinfo">
+                        <h2><b>16CLC2 - HCMUS</b></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid px-0">
+            <div class="text-center py-2 px-0 mx-0 mt-2" style="background-color: #FFAD58">
+                <h3><b>Copyright &copy; 2019</b></h3>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>

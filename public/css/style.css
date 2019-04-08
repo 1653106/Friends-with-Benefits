@@ -1,13 +1,9 @@
-a:hover {
-    color: #58C9EF;
-}
-
 .dropdown-item:active {
     background-color: #58C9EF;
 }
 
-.bottom-custom {
-    border-bottom: 2px solid #58C9EF;
+.border-custom {
+    border: 1px solid #58C9EF;
 }
 
 .dropdown-menu {
@@ -43,11 +39,24 @@ a:hover {
     border-radius: 5px;
 }
 
+.btn-custom-primary {
+    background-color: #58C9EF;
+    color: white;
+    border-radius: 5px;
+}
+
 .btn-custom-reverse {
     background-color: white;
     color: #FFAD58;
     border-radius: 5px;
     border-color: #FFAD58;
+}
+
+.btn-custom-primary-reverse {
+    background-color: white;
+    color: #58C9EF;
+    border-radius: 5px;
+    border-color: #58C9EF;
 }
 
 .btn-refresh {
@@ -58,10 +67,50 @@ a:hover {
     background-color: #58C9EF;
 }
 
+.bg-custom-secondary {
+    background-color: #FFAD58;
+}
+
+.btn-hidden {
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.avatar-crop {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.clickable-tr {
+    cursor: pointer;
+}
+
+.icon-dashboard {
+    font-size: 2em;
+    display: inline-flex;
+}
+
 #navright li>a {
     padding: 20px;
 }
 
 #classinfo {
     border: 2px solid white;
+}
+
+a {
+    color: black
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: gray;
+}
+
+input[type="radio"] {
+    margin: 0 10px 0 10px;
 }
