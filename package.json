@@ -1,24 +1,25 @@
 {
-  "name": "ptudw-16clc2-nhom02",
-  "version": "1.0.0",
-  "description": "Friends with Benefits web app",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ttbhanh/PTUDW-16CLC2-Nhom02.git"
-  },
-  "author": "Nhom02",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ttbhanh/PTUDW-16CLC2-Nhom02/issues"
-  },
-  "homepage": "https://github.com/ttbhanh/PTUDW-16CLC2-Nhom02#readme",
-  "dependencies": {
-    "express": "^4.16.4",
-    "express-handlebars": "^3.0.2",
-    "express-session": "^1.15.6"
-  }
+    "name": "f.w.b",
+    "version": "1.0.0",
+    "description": "FwB",
+    "main": "index.js",
+    "dependencies": {
+        "express": "^4.16.4",
+        "express-handlebars": "^3.0.2",
+        "express-session": "^1.15.6"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/1653106/Friends-with-Benefits.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/1653106/Friends-with-Benefits/issues"
+    },
+    "homepage": "https://github.com/1653106/Friends-with-Benefits#readme"
 }
