@@ -20,6 +20,14 @@ app.use(express.static(__dirname + '/public'));
 
 //Define routes
 
+//sync database
+let models = require('./models');
+app.get('/sync', (req, res) => {
+    models.sequelize.sync().then(() => {
+        res.send('tables created!');
+    });
+});
+
 //index
 app.get('/', (req, res) => {
     res.render('index');
