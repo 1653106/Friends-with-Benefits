@@ -5,7 +5,7 @@ $('document').ready(function() {
             $(this).attr('action', 'login-admin');
             return true;
         } else {
-            $(this).attr('action', 'login-user');
+            $(this).attr('action', 'login');
             return true;
         }
     })

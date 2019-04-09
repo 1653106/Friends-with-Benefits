@@ -58,4 +58,16 @@ router.get('/settings-friend', (req, res) => {
     res.redirect('/login-user/settings-friend');
 });
 
+//error
+router.get('/error', (req, res) => {
+    res.locals.error = req.session.error;
+    res.render('error');
+});
+
+//login
+router.post('/login', controller.login);
+
+//register
+router.post('/register', controller.register);
+
 module.exports = router;

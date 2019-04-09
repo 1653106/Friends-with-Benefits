@@ -4,6 +4,8 @@ let userController = require('../controllers/userController');
 
 //index-login
 userRouter.get('/', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     if (req.session.current_url == '/search') {
         res.redirect('/login-user/search');
         req.session.current_url = '/login-user/search';
@@ -22,36 +24,48 @@ userRouter.get('/', (req, res) => {
 
 //search login
 userRouter.get('/search', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     res.render('search-login');
     req.session.current_url = '/login-user/search';
 });
 
 //about login
 userRouter.get('/about', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     res.render('about-login');
     req.session.current_url = '/login-user/about';
 });
 
 //friend details login
 userRouter.get('/friend-details', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     res.render('friend-details-login');
     req.session.current_url = '/login-user/friend-details';
 });
 
 //settings profile
 userRouter.get('/settings-profile', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     res.render('settings-profile');
     req.session.current_url = '/login-user/settings-profile';
 });
 
 //settings transaction
 userRouter.get('/settings-transaction', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     res.render('settings-transaction');
     req.session.current_url = '/login-user/settings-transaction';
 });
 
 //settings friend
 userRouter.get('/settings-friend', (req, res) => {
+    res.locals.loginUsername = req.session.user;
+
     res.render('settings-friend');
     req.session.current_url = '/login-user/settings-friend';
 });
