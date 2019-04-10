@@ -10,7 +10,7 @@ controller.login = (req, res) => {
         }
     }).then(user => {
         if (user != null) {
-            req.session.user = user.name;
+            req.session.username = user.username;
             res.redirect('/login-user');
         } else {
             req.session.error = 'Incorrect username or password!';

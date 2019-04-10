@@ -7,7 +7,13 @@ let userRouter = require('./routes/userRouter');
 let adminRouter = require('./routes/adminRouter');
 
 //Set session
-app.use(session({ secret: 'HSIAO' }));
+app.use(session({
+    secret: 'HSIAO',
+    cookie: { maxAge: 3600000 },
+    rolling: true,
+    resave: true,
+    saveUninitialized: false
+}));
 
 //Set view engine
 let expressHbs = require('express-handlebars');
