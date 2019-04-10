@@ -41,11 +41,6 @@ userRouter.get('/friend-details', (req, res) => {
 
 //settings profile
 userRouter.get('/settings-profile', (req, res) => {
-    if (res.locals.user == 'f') {
-        res.locals.genderND = '<option value="Male">Male</option>' +
-            '<option value="Female" selected>Female</option>' +
-            '<option value="LGBT">LGBT</option>';
-    }
     res.render('settings-profile');
     req.session.current_url = '/login-user/settings-profile';
 });
@@ -61,5 +56,8 @@ userRouter.get('/settings-friend', (req, res) => {
     res.render('settings-friend');
     req.session.current_url = '/login-user/settings-friend';
 });
+
+//update profile
+userRouter.post('/update-profile', userController.updateProfile);
 
 module.exports = userRouter;
