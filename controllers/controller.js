@@ -36,7 +36,7 @@ controller.register = (req, res) => {
                 email: req.body.email,
                 role: 'u',
                 banned: false
-            }).then(user => {
+            }).then(() => {
                 res.redirect('/');
             }).catch(error => {
                 res.send(error);

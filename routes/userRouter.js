@@ -60,4 +60,10 @@ userRouter.get('/settings-friend', (req, res) => {
 //update profile
 userRouter.post('/update-profile', userController.updateProfile);
 
+//change password
+userRouter.post('/change-password', userController.changePassword);
+
+//update friend
+userRouter.post('/become-friend', userController.becomeFriend);
+
 module.exports = userRouter;
