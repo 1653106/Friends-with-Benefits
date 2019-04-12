@@ -34,10 +34,9 @@ userRouter.get('/about', (req, res) => {
 });
 
 //friend details login
-userRouter.get(('/friend-details/:UserId'), (req, res) => {
-    console.log(req.params.UserId);
+userRouter.get(('/friend-details/:UserId'), userController.getFriendDetail, (req, res) => {
     res.render('friend-details-login');
-    req.session.current_url = '/login-user/friend-details';
+    req.session.current_url = '/login-user/friend-details/' + req.params.UserId;
 });
 
 //settings profile

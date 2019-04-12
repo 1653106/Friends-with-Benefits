@@ -9,18 +9,17 @@
                     </div>
 
                     <script>
-                        if ('{{friend.status}}' == 'true') {
-                            $('#friend-status').val() = 'Ready';
-                            $('#friend-status').style.color = '#1CCA00';
+                        if ('{{friend.Friend.status}}' == 'true') {
+                            $('#friend-status').text('Ready');
+                            $('#friend-status').css('color', '#1CCA00');
                         } else {
-                            $('#friend-status').val() = 'Busy';
-                            $('#friend-status').style.color = 'red';
-                        }
-                                
+                            $('#friend-status').text('Busy');
+                            $('#friend-status').css('color', 'red');
+                        }            
                     </script>
 
                     <div class="text-center my-2">
-                        <p>Date joined: {{friend.createdAt}}</p>
+                        <p>Date joined: {{friend.Friend.createdAt}}</p>
                     </div>
                     <div class="text-center my-2">
                         <i class="fa fa-facebook-square px-1" style="color: #3b5998; font-size: 3em"></i>
@@ -32,7 +31,7 @@
             <div class="col-sm-12 col-md-6">
                 <div class="container">
                     <div class="row py-3" style="border-bottom: 1px solid #58c9ef">
-                        <h2><b>{{user.name}}</b></h2>
+                        <h2><b>{{friend.name}}</b></h2>
                     </div>
 
                     <div class="row py-3">
@@ -40,7 +39,7 @@
                     </div>
 
                     <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
-                        <p>{{friend.description}}</p>
+                        <p>{{friend.Friend.description}}</p>
                     </div>
 
                     <div class="row py-3">
@@ -48,7 +47,7 @@
                     </div>
 
                     <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
-                        <p>{{friend.detail}}</p>
+                        <p>{{friend.Friend.detail}}</p>
                     </div>
 
                     <div class="row py-3">

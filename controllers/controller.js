@@ -48,42 +48,28 @@ controller.register = (req, res) => {
 
 //Load friendlist
 controller.getAllFriend = (req, res, next) => {
-    Friend.findAll({
-            limit: 4,
-        })
-        .then(friends => {
-            res.locals.friends = friends;
-
-            friends.forEach((element) => {
-                User.findOne({
-                    where: {
-                        id: element.UserId
-                    }
-                }).then(user => {
-                    res.locals.user = user;
-                    next();
-                })
-            });
-        });
+    User.findAll({
+        limit: 4,
+        include: [models.Friend],
+        where: {
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    });
 };
 
 //Load friend detail
 controller.getFriendDetail = (req, res, next) => {
-    Friend.findOne({
+    User.findOne({
+        include: [models.Friend],
         where: {
-            UserId: req.params.UserId
+            id: req.params.UserId
         }
     }).then(friend => {
         res.locals.friend = friend;
-
-        User.findOne({
-            where: {
-                id: req.params.UserId
-            }
-        }).then(user => {
-            res.locals.user = user;
-            next();
-        });
+        next();
     });
 };
 

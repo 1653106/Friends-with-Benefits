@@ -5,42 +5,29 @@ let Friend = models.Friend;
 
 //Load friendlist
 userController.getAllFriend = (req, res, next) => {
-    Friend.findAll({
-            limit: 4,
-        })
-        .then(friends => {
-            res.locals.friends = friends;
-
-            friends.forEach((element) => {
-                User.findOne({
-                    where: {
-                        id: element.UserId
-                    }
-                }).then(user => {
-                    res.locals.user = user;
-                    next();
-                })
-            });
-        });
+    User.findAll({
+        limit: 4,
+        include: [models.Friend],
+        where: {
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    });
 };
 
 //Load friend detail
 userController.getFriendDetail = (req, res, next) => {
-    Friend.findOne({
+    console.log(req.params.UserId);
+    User.findOne({
+        include: [models.Friend],
         where: {
-            UserId: req.params.UserId
+            id: req.params.UserId
         }
     }).then(friend => {
         res.locals.friend = friend;
-
-        User.findOne({
-            where: {
-                id: req.params.UserId
-            }
-        }).then(user => {
-            res.locals.user = user;
-            next();
-        });
+        next();
     });
 };
 
@@ -59,7 +46,6 @@ userController.getByID = (req, res, next) => {
                 }
             }).then(friend => {
                 res.locals.friend = friend;
-                console.log(res.locals.friend.UserId);
                 next();
             });
         } else {
@@ -156,7 +142,7 @@ userController.becomeFriend = (req, res) => {
                             UserId: user.id
                         }
                     }).then(() => {
-                        res.redirect('friend-details');
+                        res.redirect('friend-details/' + user.id);
                     }).catch(error => {
                         res.send(error);
                     });
@@ -168,7 +154,7 @@ userController.becomeFriend = (req, res) => {
                         detail: req.body.detail,
                         status: (req.body.status == 'on') ? 1 : 0
                     }).then(() => {
-                        res.redirect('friend-details');
+                        res.redirect('friend-details/' + user.id);
                     }).catch(error => {
                         res.send(error);
                     });

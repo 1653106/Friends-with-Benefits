@@ -8,14 +8,14 @@
             </h2>
         </div>
         <div class="row">
-            {{#each friends}}
+            {{#each users}}
             <div class="col col-md-3">
-                <a href="/login-user/friend-details/{{UserId}}">
+                <a href="/login-user/friend-details/{{Friend.UserId}}">
                     <div class="card card-friend">
                         <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
                         <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">{{../user.name}}</h4>
-                            <p class="card-text">{{description}}</p>
+                            <h4 class="card-title" style="color:#58C9EF">{{name}}</h4>
+                            <p class="card-text">{{Friend.description}}</p>
                             <p class="card-text pt-3">
                                 <img class="icon" src="../images/service.png" alt="service"> Hang out
                             </p>
@@ -38,14 +38,14 @@
         </div>
 
         <div class="row">
-            {{#each friends}}
+            {{#each users}}
             <div class="col col-md-3">
-                <a href="/login-user/friend-details/{{UserId}}">
+                <a href="/login-user/friend-details/{{Friend.UserId}}">
                     <div class="card card-friend">
                         <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
                         <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">{{../user.name}}</h4>
-                            <p class="card-text">{{description}}</p>
+                            <h4 class="card-title" style="color:#58C9EF">{{name}}</h4>
+                            <p class="card-text">{{Friend.description}}</p>
                             <p class="card-text pt-3">
                                 <img class="icon" src="../images/service.png" alt="service"> Hang out
                             </p>
