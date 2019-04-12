@@ -7,15 +7,15 @@
                 </a>
             </h2>
         </div>
-
         <div class="row">
-            <div class="col">
-                <a href="friend-details">
+            {{#each friends}}
+            <div class="col col-md-3">
+                <a href="friend-details/{{UserId}}">
                     <div class="card card-friend">
                         <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
                         <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
+                            <h4 class="card-title" style="color:#58C9EF">{{../user.name}}</h4>
+                            <p class="card-text">{{description}}</p>
                             <p class="card-text pt-3">
                                 <img class="icon" src="../images/service.png" alt="service"> Hang out
                             </p>
@@ -23,51 +23,9 @@
                     </div>
                 </a>
             </div>
-            <div class="col">
-                <a href="friend-details">
-                    <div class="card card-friend">
-                        <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
-                            <p class="card-text pt-3">
-                                <img class="icon" src="../images/service.png" alt="service"> Hang out
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="friend-details">
-                    <div class="card card-friend">
-                        <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
-                            <p class="card-text pt-3">
-                                <img class="icon" src="../images/service.png" alt="service"> Hang out
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="friend-details">
-                    <div class="card card-friend">
-                        <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
-                            <p class="card-text pt-3">
-                                <img class="icon" src="../images/service.png" alt="service"> Hang out
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            {{/each}}
         </div>
     </div>
-
     <!--Recent friends-->
     <div class="container py-3">
         <div>
@@ -80,13 +38,14 @@
         </div>
 
         <div class="row">
-            <div class="col">
-                <a href="friend-details">
+            {{#each friends}}
+            <div class="col col-md-3">
+                <a href="friend-details/{{UserId}}">
                     <div class="card card-friend">
                         <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
                         <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
+                            <h4 class="card-title" style="color:#58C9EF">{{../user.name}}</h4>
+                            <p class="card-text">{{description}}</p>
                             <p class="card-text pt-3">
                                 <img class="icon" src="../images/service.png" alt="service"> Hang out
                             </p>
@@ -94,51 +53,9 @@
                     </div>
                 </a>
             </div>
-            <div class="col">
-                <a href="friend-details">
-                    <div class="card card-friend">
-                        <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
-                            <p class="card-text pt-3">
-                                <img class="icon" src="../images/service.png" alt="service"> Hang out
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="friend-details">
-                    <div class="card card-friend">
-                        <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
-                            <p class="card-text pt-3">
-                                <img class="icon" src="../images/service.png" alt="service"> Hang out
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="friend-details">
-                    <div class="card card-friend">
-                        <img class="card-img-top" src="../images/avatar.jpeg" alt="avatar">
-                        <div class="card-body">
-                            <h4 class="card-title" style="color:#58C9EF">Love Grayson</h4>
-                            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, doloremque?</p>
-                            <p class="card-text pt-3">
-                                <img class="icon" src="../images/service.png" alt="service"> Hang out
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            {{/each}}
         </div>
     </div>
-
     <!--Page navigation-->
     <div class="container py-3 text-center">
         <a href="#" class="btn btn-sm btn-custom mx-2" role="button">Previous page</a>

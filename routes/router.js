@@ -11,7 +11,7 @@ router.get('/sync', (req, res) => {
 });
 
 //index
-router.get('/', (req, res) => {
+router.get('/', controller.getAllFriend, (req, res) => {
     res.render('index');
     req.session.current_url = '';
 });
@@ -34,15 +34,6 @@ router.get('/about', (req, res) => {
     req.session.current_url = '/about';
 });
 
-//friend details
-router.get('/friend-details', (req, res) => {
-    if (req.session.current_url.includes('login-user')) {
-        res.redirect('/login-user/friend-details');
-    } else res.render('friend-details');
-
-    req.session.current_url = '/friend-details';
-});
-
 //settings profile
 router.get('/settings-profile', (req, res) => {
     res.redirect('/login-user/settings-profile');
@@ -62,6 +53,21 @@ router.get('/settings-friend', (req, res) => {
 router.get('/error', (req, res) => {
     res.locals.error = req.session.error;
     res.render('error');
+});
+
+//friend details
+router.get('/friend-details/:UserId', controller.getFriendDetail, (req, res) => {
+    req.session.friendId = req.params.UserId;
+    if (req.session.current_url.includes('login-user')) {
+        res.redirect('/login-user/friend-details/' + req.params.UserId);
+    } else res.render('friend-details');
+
+    req.session.current_url = '/friend-details/' + req.params.UserId;
+});
+
+//redirect add fund
+router.post('/add-fund', (req, res) => {
+    res.redirect('/login-user/add-fund');
 });
 
 //login

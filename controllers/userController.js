@@ -3,6 +3,47 @@ let models = require('../models');
 let User = models.User;
 let Friend = models.Friend;
 
+//Load friendlist
+userController.getAllFriend = (req, res, next) => {
+    Friend.findAll({
+            limit: 4,
+        })
+        .then(friends => {
+            res.locals.friends = friends;
+
+            friends.forEach((element) => {
+                User.findOne({
+                    where: {
+                        id: element.UserId
+                    }
+                }).then(user => {
+                    res.locals.user = user;
+                    next();
+                })
+            });
+        });
+};
+
+//Load friend detail
+userController.getFriendDetail = (req, res, next) => {
+    Friend.findOne({
+        where: {
+            UserId: req.params.UserId
+        }
+    }).then(friend => {
+        res.locals.friend = friend;
+
+        User.findOne({
+            where: {
+                id: req.params.UserId
+            }
+        }).then(user => {
+            res.locals.user = user;
+            next();
+        });
+    });
+};
+
 userController.getByID = (req, res, next) => {
     User.findOne({
         where: {
@@ -18,7 +59,7 @@ userController.getByID = (req, res, next) => {
                 }
             }).then(friend => {
                 res.locals.friend = friend;
-                console.log(res.locals.friend.id);
+                console.log(res.locals.friend.UserId);
                 next();
             });
         } else {
@@ -61,11 +102,30 @@ userController.changePassword = (req, res) => {
     }
 };
 
+userController.addFund = (req, res) => {
+    User.findOne({
+        where: {
+            username: req.session.username
+        }
+    }).then(user => {
+        if (user.password == req.body.password) {
+            User.update({
+                wallet: parseInt(user.wallet) + parseInt(req.body.fund)
+            }, {
+                where: {
+                    username: user.username
+                }
+            }).then(() => {
+                res.redirect(req.session.current_url);
+            });
+        } else {
+            req.session.error = 'Incorrect password!';
+            res.redirect('/error');
+        }
+    })
+};
+
 userController.becomeFriend = (req, res) => {
-    if (req.body.asfriend == 'on') {
-
-    };
-
     User.findOne({
         where: {
             username: req.session.username

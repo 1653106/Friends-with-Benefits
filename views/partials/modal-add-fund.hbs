@@ -8,9 +8,9 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="#">
-                        <input type="number" class="form-control my-2" placeholder="Enter amount of fund" required>
-                        <input type="password" class="form-control my-2" placeholder="Enter password" required>
+                    <form id="addfund" action="add-fund" method="POST">
+                        <input type="number" name="fund" class="form-control my-2" placeholder="Enter amount of fund" min="10000" required>
+                        <input type="password" name="password" class="form-control my-2" placeholder="Enter password" required>
                         <p style="text-align: end">
                             <input type="submit" class="btn btn-custom my-2" value="Add fund">
                         </p>

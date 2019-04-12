@@ -1,6 +1,7 @@
 let controller = {};
 let models = require('../models');
 let User = models.User;
+let Friend = models.Friend;
 
 controller.login = (req, res) => {
     User.findOne({
@@ -42,6 +43,47 @@ controller.register = (req, res) => {
                 res.send(error);
             });
         }
+    });
+};
+
+//Load friendlist
+controller.getAllFriend = (req, res, next) => {
+    Friend.findAll({
+            limit: 4,
+        })
+        .then(friends => {
+            res.locals.friends = friends;
+
+            friends.forEach((element) => {
+                User.findOne({
+                    where: {
+                        id: element.UserId
+                    }
+                }).then(user => {
+                    res.locals.user = user;
+                    next();
+                })
+            });
+        });
+};
+
+//Load friend detail
+controller.getFriendDetail = (req, res, next) => {
+    Friend.findOne({
+        where: {
+            UserId: req.params.UserId
+        }
+    }).then(friend => {
+        res.locals.friend = friend;
+
+        User.findOne({
+            where: {
+                id: req.params.UserId
+            }
+        }).then(user => {
+            res.locals.user = user;
+            next();
+        });
     });
 };
 
