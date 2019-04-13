@@ -27,7 +27,7 @@ B. Phân hệ admin: (giao diện tĩnh, chưa cần chức năng)
 
 6. Trang thống kê với các biểu đồ. Chú ý cần thiết kế giao diện chọn 2 ngày bắt dầu và kết thúc để truy vấn csdl tạo thống kê. X
 
-B. BackEnd
+C. BackEnd
 
 1. Load trang chủ X
 
