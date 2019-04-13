@@ -69,4 +69,7 @@ userRouter.post('/become-friend', userController.becomeFriend);
 //add fund
 userRouter.post('/add-fund', userController.addFund);
 
+//upload avatar
+userRouter.post('/upload-avatar', userController.uploadAvatar);
+
 module.exports = userRouter;

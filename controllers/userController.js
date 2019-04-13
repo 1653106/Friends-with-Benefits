@@ -1,5 +1,6 @@
 let userController = {};
 let models = require('../models');
+let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
 
@@ -169,6 +170,38 @@ userController.becomeFriend = (req, res) => {
                 }
             }).then(() => {
                 res.redirect('settings-friend');
+            });
+        }
+    });
+};
+
+// upload avatar
+
+let Storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, "./public/images");
+    },
+    filename: function(req, file, callback) {
+        callback(null, file.fieldname + "_" + req.session.username + ".png");
+    }
+});
+
+let upload = multer({ storage: Storage }).single("userAvatar");
+
+userController.uploadAvatar = function(req, res) {
+    upload(req, res, function(err) {
+        if (err) {
+            req.session.error = 'Upload fail!';
+            res.redirect('/error');
+        } else {
+            User.update({
+                imagepath: "/images/" + req.file.filename
+            }, {
+                where: {
+                    username: req.session.username
+                }
+            }).then(() => {
+                res.redirect('settings-profile');
             });
         }
     });

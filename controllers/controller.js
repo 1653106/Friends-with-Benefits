@@ -36,7 +36,8 @@ controller.register = (req, res) => {
                 dateofbirth: req.body.dateofbirth,
                 email: req.body.email,
                 role: 'u',
-                banned: false
+                banned: false,
+                imagepath: '/images/default.png'
             }).then(() => {
                 res.redirect('/');
             }).catch(error => {
