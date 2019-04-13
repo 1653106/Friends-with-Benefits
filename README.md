@@ -25,7 +25,29 @@ B. Phân hệ admin: (giao diện tĩnh, chưa cần chức năng)
 
 5. Trang chi tiết đơn hàng X   
 
-6. Trang thống kê với các biểu đồ. Chú ý cần thiết kế giao diện chọn 2 ngày bắt dầu và kết thúc để truy vấn csdl tạo thống kê. X  
+6. Trang thống kê với các biểu đồ. Chú ý cần thiết kế giao diện chọn 2 ngày bắt dầu và kết thúc để truy vấn csdl tạo thống kê. X
+
+B. BackEnd
+
+1. Load trang chủ X
+
+2. View chi tiết X
+
+3. Đăng nhập/ đăng kí X (chưa có mail verify)
+
+4. Chỉnh sửa thông tin cá nhân X
+
+5. Upload avatar X
+
+6. Thêm tiền vào ví X (chưa có thanh toán paypal)
+
+7. Trở thành 1 friend X (chưa có chức năng duyệt của admin)
+
+8. Transaction (bao gồm thuê, tình trạng đơn hàng, xem lịch sử)
+
+9. Feedback (bao gồm review và comment)
+
+10. Admin (chỉnh sửa thông tin, xem các biểu đồ, quản lý users)
 
 ## Collaborators
 [Đỗ Mạnh Tiến](https://github.com/1653087)  

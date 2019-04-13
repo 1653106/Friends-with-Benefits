@@ -9,9 +9,11 @@
 
                 <div class="modal-body">
                     <form id="uploadavatar" enctype="multipart/form-data" action="upload-avatar" method="POST">
-                        <input type="file" name="userAvatar" multiple id="choosefile" class="form-control-file"/>
+                        <input type="file" name="userAvatar" multiple id="choosefile" class="form-control-file border" style="border-radius: 5px"/>
                         <h4 id="validate"></h4>
-                        <input type="submit" name="submit" id="btnSubmit" value="Upload" class="btn btn-custom"/>
+                        <p style="text-align: end">
+                            <input type="submit" name="submit" id="btnSubmit" value="Upload" class="btn btn-custom my-2"/>
+                        </p>
                     </form>
                 </div>
             </div>
