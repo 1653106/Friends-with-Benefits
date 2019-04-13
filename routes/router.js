@@ -57,6 +57,7 @@ router.get('/error', (req, res) => {
 
 //friend details
 router.get('/friend-details/:UserId', controller.getFriendDetail, (req, res) => {
+    req.session.friendId = req.params.UserId;
     if (req.session.current_url.includes('login-user')) {
         res.redirect('/login-user/friend-details/' + req.params.UserId);
     } else res.render('friend-details');
