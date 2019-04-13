@@ -1,0 +1,23 @@
+{
+    "development": {
+        "username": "postgres",
+        "password": "Supervy3105$$$",
+        "database": "FriendsWithBenefits",
+        "host": "127.0.0.1",
+        "dialect": "postgres"
+    },
+    "test": {
+        "username": "root",
+        "password": null,
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "ulfxxmmqoyzakm",
+        "password": "065e731cd4182f3ccb805e64fd81e0a571d61bc59ab072af9fb04afbf73cc3d5",
+        "database": "d6ttaehdtv7si",
+        "host": "ec2-23-23-92-204.compute-1.amazonaws.com",
+        "dialect": "postgres"
+    }
+}

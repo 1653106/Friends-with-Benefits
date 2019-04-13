@@ -4,11 +4,22 @@
             <div class="col-sm-12 col-md-3" style="border-right-style: solid; border-right-color: #58c9ef">
                 <div class="text-center" style="background: white">
                     <img class="img-thumbnail my-3" style="border-radius:10px" src="../images/avatar.jpeg" alt="avatar">
-                    <div class="text-center my-2" style="color: #1CCA00">
-                        Ready
-                    </div>
                     <div class="text-center my-2">
-                        <p>Date joined: 11/03/2019</p>
+                        <h4 id="friend-status"></h4>
+                    </div>
+
+                    <script>
+                        if ('{{friend.Friend.status}}' == 'true') {
+                            $('#friend-status').text('Ready');
+                            $('#friend-status').css('color', '#1CCA00');
+                        } else {
+                            $('#friend-status').text('Busy');
+                            $('#friend-status').css('color', 'red');
+                        }            
+                    </script>
+
+                    <div class="text-center my-2">
+                        <p>Date joined: {{friend.Friend.createdAt}}</p>
                     </div>
                     <div class="text-center my-2">
                         <i class="fa fa-facebook-square px-1" style="color: #3b5998; font-size: 3em"></i>
@@ -19,38 +30,24 @@
 
             <div class="col-sm-12 col-md-6">
                 <div class="container">
-                    <div class="row py-3">
-                        <h2><b>LOVE GRAYSON</b></h2>
-                    </div>
-
-                    <div class="row" style="border-bottom: 1px solid #58C9EF">
-                        <table class="table-sm col-sm-12" style="text-align: end">
-                            <thead>
-                                <tr>
-                                    <th scope="col">RELIABILITY</th>
-                                    <th scope="col">HIRED FOR</th>
-                                    <th scope="col">HIRED BY</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>80%</td>
-                                    <td>50 times</td>
-                                    <td>20 people</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
                     <div class="row py-3" style="border-bottom: 1px solid #58c9ef">
-                        <h4><b>INFO</b></h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio culpa quasi delectus, autem repellendus in voluptas, et vitae dolorem, sunt dolorum fugit recusandae hic nostrum. Voluptate corrupti aliquid quaerat est ducimus dolorum doloribus neque
-                            adipisci placeat perferendis eligendi laborum, earum, nulla ad! Ea facere autem provident excepturi ab nam quaerat iure, possimus consequatur corrupti tempore eius voluptas nemo earum quibusdam quis doloribus culpa debitis
-                            in suscipit molestias deleniti! Ipsam saepe debitis commodi numquam officiis maiores facere consequatur esse rem iusto aliquam, necessitatibus quis dolor obcaecati placeat in sequi quisquam? Iure ab accusamus doloremque sed.
-                            Numquam corrupti dolorem cupiditate voluptate optio?
-                        </p>
+                        <h2><b>{{friend.name}}</b></h2>
+                    </div>
+
+                    <div class="row py-3">
+                        <h4><b>DESCRIPTION</b></h4>
+                    </div>
+
+                    <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
+                        <p>{{friend.Friend.description}}</p>
+                    </div>
+
+                    <div class="row py-3">
+                        <h4><b>DETAIL</b></h4>
+                    </div>
+
+                    <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
+                        <p>{{friend.Friend.detail}}</p>
                     </div>
 
                     <div class="row py-3">
