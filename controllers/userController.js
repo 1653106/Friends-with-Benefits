@@ -1,8 +1,11 @@
 let userController = {};
 let models = require('../models');
+let sequelize = require('sequelize');
 let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
+
+const Op = sequelize.Op;
 
 //Load friendlist
 userController.getAllFriend = (req, res, next) => {
@@ -205,6 +208,44 @@ userController.uploadAvatar = function(req, res) {
             });
         }
     });
+};
+
+userController.searchFriendByName = (req, res, next) => {
+    User.findAll({
+        include: [models.Friend],
+        where: {
+            name: {
+                [Op.like]: '%' + req.query.name + '%'
+            },
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    });
+};
+
+userController.searchFriendByFilter = (req, res, next) => {
+    User.findAll({
+        include: [{
+            model: models.Friend,
+            price: {
+                [Op.between]: [req.query.pricefrom, req.query.priceto]
+            }
+        }],
+        where: {
+            name: {
+                [Op.like]: '%' + req.query.name + '%'
+            },
+            gender: req.query.gender,
+
+            city: req.query.city,
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    })
 };
 
 module.exports = userController;

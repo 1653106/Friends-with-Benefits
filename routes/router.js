@@ -17,13 +17,22 @@ router.get('/', controller.getAllFriend, (req, res) => {
 });
 
 //search
-router.get('/search', (req, res) => {
+router.get('/search', controller.searchFriendByName, (req, res) => {
     if (req.session.current_url.includes('login-user')) {
         res.redirect('/login-user/search');
     } else res.render('search');
 
     req.session.current_url = '/search';
 });
+
+//filter
+router.get('/filter', controller.searchFriendByFilter, (req, res) => {
+    if (req.session.current_url.includes('login-user')) {
+        res.redirect('login-user/filter');
+    } else res.render('search');
+
+    req.session.current_url = '/filter';
+})
 
 //about
 router.get('/about', (req, res) => {

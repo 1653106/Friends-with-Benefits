@@ -9,6 +9,9 @@ userRouter.get('/', userController.getAllFriend, (req, res) => {
     if (req.session.current_url == '/search') {
         res.redirect('/login-user/search');
         req.session.current_url = '/login-user/search';
+    } else if (req.session.current_url == '/filter') {
+        res.redirect('/login-user/filter');
+        req.session.current_url = '/login-user/filter';
     } else if (req.session.current_url == '/about') {
         res.redirect('/login-user/about');
         req.session.current_url = '/login-user/about';
@@ -22,9 +25,15 @@ userRouter.get('/', userController.getAllFriend, (req, res) => {
 });
 
 //search login
-userRouter.get('/search', (req, res) => {
+userRouter.get('/search', userController.searchFriendByName, (req, res) => {
     res.render('search-login');
     req.session.current_url = '/login-user/search';
+});
+
+//filter login
+userRouter.get('/filter', userController.searchFriendByFilter, (req, res) => {
+    res.render('search-login');
+    req.session.current_url = '/login-user/filter';
 });
 
 //about login

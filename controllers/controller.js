@@ -1,7 +1,10 @@
 let controller = {};
 let models = require('../models');
+let sequelize = require('sequelize');
 let User = models.User;
 let Friend = models.Friend;
+
+const Op = sequelize.Op;
 
 controller.login = (req, res) => {
     User.findOne({
@@ -72,6 +75,44 @@ controller.getFriendDetail = (req, res, next) => {
         res.locals.friend = friend;
         next();
     });
+};
+
+controller.searchFriendByName = (req, res, next) => {
+    User.findAll({
+        include: [models.Friend],
+        where: {
+            name: {
+                [Op.like]: '%' + req.query.name + '%'
+            },
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    });
+};
+
+controller.searchFriendByFilter = (req, res, next) => {
+    User.findAll({
+        include: [{
+            model: models.Friend,
+            price: {
+                [Op.between]: [req.query.pricefrom, req.query.priceto]
+            }
+        }],
+        where: {
+            name: {
+                [Op.like]: '%' + req.query.name + '%'
+            },
+            gender: req.query.gender,
+
+            city: req.query.city,
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    })
 };
 
 module.exports = controller;
