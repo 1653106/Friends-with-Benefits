@@ -6,12 +6,12 @@ userRouter.use(userController.getByID);
 
 //index-login
 userRouter.get('/', userController.getAllFriend, (req, res) => {
-    if (req.session.current_url == '/search') {
-        res.redirect('/login-user/search');
-        req.session.current_url = '/login-user/search';
-    } else if (req.session.current_url == '/filter') {
-        res.redirect('/login-user/filter');
-        req.session.current_url = '/login-user/filter';
+    if (req.session.current_url.includes('/search') && !req.session.current_url.includes('/login-user')) {
+        res.redirect('/login-user' + req.session.current_url);
+        req.session.current_url = '/login-user' + req.session.current_url;
+    } else if (req.session.current_url.includes('/filter') && !req.session.current_url.includes('/login-user')) {
+        res.redirect('/login-user' + req.session.current_url);
+        req.session.current_url = '/login-user' + req.session.current_url;
     } else if (req.session.current_url == '/about') {
         res.redirect('/login-user/about');
         req.session.current_url = '/login-user/about';
@@ -27,13 +27,13 @@ userRouter.get('/', userController.getAllFriend, (req, res) => {
 //search login
 userRouter.get('/search', userController.searchFriendByName, (req, res) => {
     res.render('search-login');
-    req.session.current_url = '/login-user/search';
+    req.session.current_url = '/login-user/search?name=' + req.query.name;
 });
 
 //filter login
 userRouter.get('/filter', userController.searchFriendByFilter, (req, res) => {
     res.render('search-login');
-    req.session.current_url = '/login-user/filter';
+    req.session.current_url = '/login-user/filter?name=' + req.query.name + '&gender=' + req.query.gender + '&pricefrom=' + req.query.pricefrom + '&priceto=' + req.query.priceto + '&city=' + req.query.city;
 });
 
 //about login

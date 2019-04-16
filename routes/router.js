@@ -22,7 +22,7 @@ router.get('/search', controller.searchFriendByName, (req, res) => {
         res.redirect('/login-user/search');
     } else res.render('search');
 
-    req.session.current_url = '/search';
+    req.session.current_url = '/search?name=' + req.query.name;
 });
 
 //filter
@@ -31,7 +31,7 @@ router.get('/filter', controller.searchFriendByFilter, (req, res) => {
         res.redirect('login-user/filter');
     } else res.render('search');
 
-    req.session.current_url = '/filter';
+    req.session.current_url = '/filter?name=' + req.query.name + '&gender=' + req.query.gender + '&pricefrom=' + req.query.pricefrom + '&priceto=' + req.query.priceto + '&city=' + req.query.city;
 })
 
 //about
