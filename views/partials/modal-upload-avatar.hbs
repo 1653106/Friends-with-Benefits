@@ -1,0 +1,21 @@
+<!--Upload avatar modal-->
+    <div class="modal fade" id="uploadavatarmodal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-custom text-white">
+                    <h3 class="modal-title">UPLOAD AVATAR</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="uploadavatar" enctype="multipart/form-data" action="upload-avatar" method="POST">
+                        <input type="file" name="userAvatar" multiple id="choosefile" class="form-control-file border" style="border-radius: 5px"/>
+                        <h4 id="validate"></h4>
+                        <p style="text-align: end">
+                            <input type="submit" name="submit" id="btnSubmit" value="Upload" class="btn btn-custom my-2"/>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

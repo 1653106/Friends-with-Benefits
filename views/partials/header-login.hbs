@@ -1,14 +1,14 @@
 <!--Header-->
     <div class="container-fluid bg-custom">
         <nav class="navbar navbar-expand-sm navbar-dark container">
-            <a class="navbar-brand" href="/login-user"><img class="logo" src="../images/F.w.B-logo-nowatermark-white.png" alt="logo"></a>
+            <a class="navbar-brand" href="/login-user"><img class="logo" src="/images/F.w.B-logo-nowatermark-white.png" alt="logo"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <form class="form-inline my-2 my-lg-0" action="search">
+                <form class="form-inline my-2 my-lg-0" action="/login-user/search">
                     <div class="input-group input-group-lg">
-                        <input name="query" type="text" class="form-control" id="search-text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter name...">
+                        <input name="name" type="text" class="form-control" id="search-text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter name...">
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text btn" id="search-btn">
                                 <i class="fa fa-search" style="color: #58C9EF"></i>
@@ -29,15 +29,15 @@
                         </li>
                         <li class="nav-item active dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="../images/avatar.jpeg" alt="avatar" class="avatar-crop"> Username
+                                <img src="{{user.imagepath}}" alt="avatar" class="avatar-crop"> {{user.name}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addfundmodal">Add fund</a>
-                                <a class="dropdown-item" href="friend-details">Details</a>
-                                <a class="dropdown-item" href="settings-profile">Profile settings</a>
-                                <a class="dropdown-item" href="settings-transaction">Transaction history</a>
-                                <a class="dropdown-item" href="settings-friend"><span style="color: #FFAD58">FRIEND</span> settings</a>
-                                <a class="dropdown-item" href="/"><img src="../images/logout.png" alt="logout" style="width: 20px"> Log out</a>
+                                <a class="dropdown-item" href="/login-user/friend-details/{{friend.UserId}}">Details</a>
+                                <a class="dropdown-item" href="/login-user/settings-profile">Profile settings</a>
+                                <a class="dropdown-item" href="/login-user/settings-transaction">Transaction history</a>
+                                <a class="dropdown-item" href="/login-user/settings-friend"><span style="color: #FFAD58">FRIEND</span> settings</a>
+                                <a class="dropdown-item" href="/"><img src="/images/logout.png" alt="logout" style="width: 20px"> Log out</a>
                             </div>
                         </li>
                         <li class="nav-item">
