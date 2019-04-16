@@ -49,6 +49,15 @@ C. BackEnd
 
 10. Admin (chỉnh sửa thông tin, xem các biểu đồ, quản lý users)
 
+##Guideline
+
+1. Install PostgreSQL
+2. npm install (in terminal)
+3. add your own database info in config/config.json (because we use local database)
+4. nodemon index (in terminal)
+5. type localhost:3105/sync in your browser to add tables to database
+6. Enjoy
+
 ## Collaborators
 [Đỗ Mạnh Tiến](https://github.com/1653087)  
 [Đinh Trần Toản](https://github.com/1653092)  
