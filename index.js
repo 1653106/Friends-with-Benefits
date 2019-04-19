@@ -31,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Set static public folder
 app.use(express.static(__dirname + '/public'));
+app.use('/bar-rating', express.static(__dirname + '/node_modules/jquery-bar-rating/dist/'));
 
 //Define routes
 app.use('/', router);

@@ -17,17 +17,34 @@ module.exports = {
             name: {
                 type: Sequelize.STRING
             },
+            gender: {
+                type: Sequelize.CHAR
+            },
             dateofbirth: {
                 type: Sequelize.DATE
             },
+            phone: {
+                type: Sequelize.STRING
+            },
             email: {
                 type: Sequelize.STRING
+            },
+            city: {
+                type: Sequelize.STRING
+            },
+            wallet: {
+                allowNull: false,
+                defaultValue: 0,
+                type: Sequelize.INTEGER
             },
             role: {
                 type: Sequelize.CHAR
             },
             banned: {
                 type: Sequelize.BOOLEAN
+            },
+            imagepath: {
+                type: Sequelize.STRING
             },
             createdAt: {
                 allowNull: false,
