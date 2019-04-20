@@ -49,18 +49,22 @@ userController.getFriendDetail = (req, res, next) => {
             UserId: req.params.UserId
         }
     }).then(friend => {
-        // let page = req.query.page || 1;
-        // let pageLimit = 3;
-        // let offset = (page - 1) + pageLimit;
+        let page = req.query.page || 1;
+        let pageLimit = 3;
+        let offset = (page - 1) * pageLimit;
 
-        // let pagination = {
-        //     page: parseInt(page),
-        //     limit: pageLimit,
-        //     totalRows: friend.Feedbacks.length
-        // };
+        let pagination = {
+            page: parseInt(page),
+            limit: pageLimit,
+            totalRows: friend.Feedbacks.length
+        };
 
-        // //res.local.pagination = pagination;
-        // friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
+        friend.Feedbacks.sort((a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+
+        res.locals.pagination = pagination;
+        friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
         res.locals.friend = friend;
         next();
     });

@@ -93,6 +93,23 @@
     display: inline-flex;
 }
 
+.pagination-style {
+    list-style-type: none;
+    overflow: hidden;
+    margin: auto;
+    display: inline-block;
+}
+
+.pagination-style li {
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.pagination-style li a {
+    color: white;
+}
+
 #navright li>a {
     padding: 20px;
 }
