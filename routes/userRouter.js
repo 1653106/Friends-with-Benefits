@@ -44,6 +44,7 @@ userRouter.get('/about', (req, res) => {
 
 //friend details login
 userRouter.get(('/friend-details/:UserId'), userController.getFriendDetail, (req, res) => {
+    req.session.friendId = req.params.UserId;
     res.render('friend-details-login');
     req.session.current_url = '/login-user/friend-details/' + req.params.UserId;
 });
@@ -85,5 +86,8 @@ userRouter.post('/add-fund', userController.addFund);
 
 //upload avatar
 userRouter.post('/upload-avatar', userController.uploadAvatar);
+
+//save Transaction
+userRouter.post('/save-transaction', userController.saveTransaction)
 
 module.exports = userRouter;

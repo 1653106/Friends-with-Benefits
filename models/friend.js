@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
         Friend.belongsTo(models.User);
         Friend.hasMany(models.Feedback);
+        Friend.hasMany(models.Transaction);
     };
     return Friend;
 };

@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
         User.hasOne(models.Friend);
         User.hasMany(models.Feedback);
+        User.hasMany(models.Transaction)
     };
     return User;
 };

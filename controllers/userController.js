@@ -5,6 +5,7 @@ let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
 let Feedback = models.Feedback;
+let Transaction = models.Transaction;
 
 const Op = sequelize.Op;
 
@@ -302,5 +303,33 @@ userController.postFeedback = (req, res, next) => {
         })
     })
 };
+
+userController.saveTransaction = (req, res) => {
+    console.log(req.session.friendId);
+
+    Friend.findOne({
+        where: {
+            UserId: req.session.friendId
+        }
+    }).then(friend => {
+        User.findOne({
+            where: {
+                username: req.session.username
+            }
+        }).then(user => {
+            console.log(friend.id);
+            Transaction.create({
+                UserId: user.id,
+                FriendId: friend.id,
+                totalprice: friend.price * req.body.priceperh,
+                hours: req.body.priceperh
+            });
+
+            res.redirect(req.session.current_url);
+        });
+    });
+};
+
+
 
 module.exports = userController;
