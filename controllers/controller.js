@@ -66,12 +66,43 @@ controller.getAllFriend = (req, res, next) => {
 
 //Load friend detail
 controller.getFriendDetail = (req, res, next) => {
-    User.findOne({
-        include: [models.Friend],
+    // User.findOne({
+    //     include: [models.Friend],
+    //     where: {
+    //         id: req.params.UserId
+    //     }
+    // }).then(friend => {
+    //     res.locals.friend = friend;
+    //     next();
+    // });
+
+    Friend.findOne({
+        include: [{
+                model: models.User,
+            },
+            {
+                model: models.Feedback,
+                include: {
+                    model: models.User
+                }
+            }
+        ],
         where: {
-            id: req.params.UserId
+            UserId: req.params.UserId
         }
     }).then(friend => {
+        // let page = req.query.page || 1;
+        // let pageLimit = 3;
+        // let offset = (page - 1) + pageLimit;
+
+        // let pagination = {
+        //     page: parseInt(page),
+        //     limit: pageLimit,
+        //     totalRows: friend.Feedbacks.length
+        // };
+
+        // //res.local.pagination = pagination;
+        // friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
         res.locals.friend = friend;
         next();
     });

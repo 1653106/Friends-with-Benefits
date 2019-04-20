@@ -48,6 +48,11 @@ userRouter.get(('/friend-details/:UserId'), userController.getFriendDetail, (req
     req.session.current_url = '/login-user/friend-details/' + req.params.UserId;
 });
 
+//feedback
+userRouter.post('/feedback', userController.postFeedback, (req, res) => {
+    res.redirect(req.session.current_url);
+});
+
 //settings profile
 userRouter.get('/settings-profile', (req, res) => {
     res.render('settings-profile');

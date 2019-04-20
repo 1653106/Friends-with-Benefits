@@ -4,6 +4,7 @@ let sequelize = require('sequelize');
 let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
+let Feedback = models.Feedback;
 
 const Op = sequelize.Op;
 
@@ -23,13 +24,43 @@ userController.getAllFriend = (req, res, next) => {
 
 //Load friend detail
 userController.getFriendDetail = (req, res, next) => {
-    console.log(req.params.UserId);
-    User.findOne({
-        include: [models.Friend],
+    // User.findOne({
+    //     include: [models.Friend],
+    //     where: {
+    //         id: req.params.UserId
+    //     }
+    // }).then(friendDetail => {
+    //     res.locals.friendDetail = friendDetail;
+    //     next();
+    // });
+
+    Friend.findOne({
+        include: [{
+                model: models.User,
+            },
+            {
+                model: models.Feedback,
+                include: {
+                    model: models.User
+                }
+            }
+        ],
         where: {
-            id: req.params.UserId
+            UserId: req.params.UserId
         }
     }).then(friend => {
+        // let page = req.query.page || 1;
+        // let pageLimit = 3;
+        // let offset = (page - 1) + pageLimit;
+
+        // let pagination = {
+        //     page: parseInt(page),
+        //     limit: pageLimit,
+        //     totalRows: friend.Feedbacks.length
+        // };
+
+        // //res.local.pagination = pagination;
+        // friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
         res.locals.friend = friend;
         next();
     });
@@ -245,6 +276,26 @@ userController.searchFriendByFilter = (req, res, next) => {
     }).then(users => {
         res.locals.users = users;
         next();
+    })
+};
+
+//feedback
+userController.postFeedback = (req, res, next) => {
+    User.findOne({
+        where: {
+            username: req.session.username
+        }
+    }).then(commenter => {
+        Feedback.create({
+            comment: req.body.comment,
+            rate: req.body.starrating,
+            FriendId: req.body.friendid,
+            UserId: commenter.id
+        }).then(() => {
+            next();
+        }).catch(error => {
+            res.send(error);
+        })
     })
 };
 

@@ -1,15 +1,16 @@
 <!--Info Part-->
+{{#with friend}}
 <div class="container my-4">
     <div class="row">
         <div class="col-sm-12 col-md-3" style="border-right-style: solid; border-right-color: #58c9ef">
             <div class="text-center" style="background: white">
-                <img class="img-thumbnail my-3" style="border-radius:10px" src="{{friend.imagepath}}" alt="avatar">
+                <img class="img-thumbnail my-3" style="border-radius:10px" src="{{User.imagepath}}" alt="avatar">
                 <div class="text-center my-2">
                     <h4 id="friend-status"></h4>
                 </div>
 
                 <script>
-                    if ('{{friend.Friend.status}}' == 'true') {
+                    if ('{{status}}' == 'true') {
                         $('#friend-status').text('Ready');
                         $('#friend-status').css('color', '#1CCA00');
                     } else {
@@ -19,7 +20,7 @@
                 </script>
 
                 <div class="text-center my-2">
-                    <p>Date joined: {{friend.Friend.createdAt}}</p>
+                    <p>Date joined: {{createdAt}}</p>
                 </div>
                 <div class="text-center my-2">
                     <i class="fa fa-facebook-square px-1" style="color: #3b5998; font-size: 3em"></i>
@@ -31,7 +32,7 @@
         <div class="col-sm-12 col-md-6">
             <div class="container">
                 <div class="row py-3">
-                    <h2><b>{{friend.name}}</b></h2>
+                    <h2><b>{{User.name}}</b></h2>
                 </div>
 
                 <div class="row py-3">
@@ -39,7 +40,7 @@
                 </div>
 
                 <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
-                    <p>{{friend.Friend.description}}</p>
+                    <p>{{description}}</p>
                 </div>
 
                 <div class="row py-3">
@@ -47,7 +48,7 @@
                 </div>
 
                 <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
-                    <p>{{friend.Friend.detail}}</p>
+                    <p>{{detail}}</p>
                 </div>
 
                 <div class="row py-3">
@@ -56,28 +57,33 @@
 
                 <div class="row" style="border-bottom: 1px solid #58c9ef">
                     <ul class="list-group list-group-flush">
+                        {{#each Feedbacks}}
                         <li class="list-group-item">
-                            <div class="row" style="float: left">
-                                <img src="{{friend.imagepath}}" alt="avatar" class="avatar-crop mx-2 my-2">
-                                <p><b>{{friend.name}}</b><br><span style="font-size: 0.5em">hh:mm:ss, dd/mm/yyyy</span></p>
+                            <div class="row">
+                                <img src="{{User.imagepath}}" alt="avatar" class="avatar-crop mx-2 my-2">
+                                <p><b>{{User.name}}</b><br><span style="font-size: 0.5em">{{createdAt}}</span></p>
                             </div>
 
+                            <div class="col-sm-12">
+                                <p>{{rate}}<i class="fas fa-star" style="color: #EDB867"></i></p>
+                            </div>
 
-                            <div id="star" style="float: right">
+                            <!-- <div id="{{id}}">
                             </div>
 
                             <script>
                                 $(function() {
-                                    for (i = 0; i < 5; i++) {
-                                        $('#star').append('<i class="fas fa-star" style="color: #EDB867"></i>');
+                                    for (i = 0; i < '{{rate}}'; i++) {
+                                        $('{{id}}').append('<i class="fas fa-star" style="color: #EDB867"></i>');
                                     }
                                 })
-                            </script>
+                            </script> -->
 
-                            <div style="clear: both">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, blanditiis.</p>
+                            <div class="col-sm-12" style="word-break: break-all">
+                                {{comment}}
                             </div>
                         </li>
+                        {{/each}}
                     </ul>
                 </div>
 
@@ -86,32 +92,31 @@
                 </div>
 
                 <div class="row px-3">
-                    <form method="post" action="/feedback">
+                    <form action="/login-user/feedback" method="POST">
                         <div class="form-group row">
-                            <label for="star-rating" class="control-label col-sm-2">Rate:</label>
+                            <label for="starrating" class="control-label col-sm-2">Rate:</label>
                             <div class="col-sm-10">
-                                <select id="star-rating">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
+                                <select class="form-control" name="starrating" id="starrating">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
                             </div>
 
                             <script>
                                 $(function() {
-                                    $('#star-rating').barrating({
+                                    $('#starrating').barrating({
                                         theme: 'fontawesome-stars'
                                     });
-                                    $('#star-rating').barrating('set', 5);
                                 });
                             </script>
                         </div>
                         <div class="form-group row">
                             <label for="comment" class="control-label col-sm-2">Comment: </label>
                             <div class="col-sm-12"><textarea class="form-control" name="comment" id="comment" rows="5" cols="100" required></textarea></div>
-                            <input type='hidden' name='article' value="id" />
+                            <input type='hidden' name='friendid' id="friendid" value="{{id}}" />
                         </div>
 
                         <div class="form-group">
@@ -131,3 +136,4 @@
         </div>
     </div>
 </div>
+{{/with}}
