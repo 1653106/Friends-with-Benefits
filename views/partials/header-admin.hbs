@@ -1,35 +1,35 @@
 <!--Header-->
-    <div class="container-fluid bg-custom">
-        <nav class="navbar navbar-expand-sm navbar-dark container" id="bottom">
-            <a class="navbar-brand" href="#"><img class="logo" src="../images/F.w.B-logo-nowatermark-white.png" alt="logo"></a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+<div class="container-fluid bg-custom">
+    <nav class="navbar navbar-expand-sm navbar-dark container" id="bottom">
+        <a class="navbar-brand" href="#"><img class="logo" src="../images/F.w.B-logo-nowatermark-white.png" alt="logo"></a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <div class="navbar-collapse justify-content-end">
-                    <ul class="navbar-nav mt-2 mt-lg-0" id="navright" style="font-size: 1.25em;">
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <a class="dropdown-item" href="#">Gaming</a>
-                            </div>
-                        </li>
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="../images/avatar.jpeg" alt="avatar" class="avatar-crop"> Username
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <a class="dropdown-item" href="admin-profile">Profile settings</a>
-                                <a class="dropdown-item" href="admin-account">Account management</a>
-                                <a class="dropdown-item" href="admin-transaction">Transaction management</a>
-                                <a class="dropdown-item" href="/"><img src="../images/logout.png" alt="logout" style="width: 20px"> Log out</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: #FFAD58"><b>ENG</b></a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <div class="navbar-collapse justify-content-end">
+                <ul class="navbar-nav mt-2 mt-lg-0" id="navright" style="font-size: 1.25em;">
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">Gaming</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{admin.imagepath}}" alt="avatar" class="avatar-crop"> {{admin.name}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="admin-profile">Profile settings</a>
+                            <a class="dropdown-item" href="admin-account">Account management</a>
+                            <a class="dropdown-item" href="admin-transaction">Transaction management</a>
+                            <a class="dropdown-item" href="/"><img src="../images/logout.png" alt="logout" style="width: 20px"> Log out</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: #FFAD58"><b>ENG</b></a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>

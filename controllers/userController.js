@@ -215,7 +215,6 @@ userController.becomeFriend = (req, res) => {
 };
 
 // upload avatar
-
 let Storage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, "./public/images");
@@ -240,7 +239,7 @@ userController.uploadAvatar = function(req, res) {
                     username: req.session.username
                 }
             }).then(() => {
-                res.redirect('settings-profile');
+                res.redirect('/login-user/settings-profile');
             });
         }
     });

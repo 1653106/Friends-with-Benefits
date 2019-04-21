@@ -2,6 +2,8 @@ let express = require('express');
 let adminRouter = express.Router();
 let adminController = require('../controllers/adminController');
 
+adminRouter.use(adminController.getByID);
+
 //admin dashboard
 adminRouter.get('/', (req, res) => {
     res.redirect('/login-admin/admin-dashboard');
@@ -60,5 +62,14 @@ adminRouter.get('/admin-reports-chart', (req, res) => {
     res.render('admin-reports-chart');
     req.session.current_url = 'login-admin/admin-reports-chart';
 });
+
+//update profile
+adminRouter.post('/update-profile', adminController.updateProfile);
+
+//change password
+adminRouter.post('/change-password', adminController.changePassword);
+
+//upload avatar
+adminRouter.post('/upload-avatar', adminController.uploadAvatar);
 
 module.exports = adminRouter;

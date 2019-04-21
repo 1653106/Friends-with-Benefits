@@ -44,6 +44,8 @@ module.exports = {
                 type: Sequelize.BOOLEAN
             },
             imagepath: {
+                allowNull: false,
+                defaultValue: '/images/default.png',
                 type: Sequelize.STRING
             },
             createdAt: {

@@ -13,7 +13,10 @@ controller.login = (req, res) => {
             password: req.body.password
         }
     }).then(user => {
-        if (user != null) {
+        if (user != null && user.username == 'admin' && user.role.trim() == 'a') {
+            req.session.username = user.username;
+            res.redirect('/login-admin')
+        } else if (user != null) {
             req.session.username = user.username;
             res.redirect('/login-user');
         } else {
