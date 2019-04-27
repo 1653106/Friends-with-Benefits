@@ -80,5 +80,31 @@ adminController.uploadAvatar = function(req, res) {
         }
     });
 };
-
+//Chart
+adminController.getGender = function(req,res)
+{
+    User.count({
+        where : {
+            gender:"f"
+        }
+    }).then(count=>{
+        res.locals.female=count;
+        User.count({
+            where : {
+                gender:"m"
+            }
+        }).then(count=>{
+            res.locals.male=count;
+            User.count({
+                where : {
+                    gender:"l"
+                }
+            }).then(count=>{
+                res.locals.lgbt=count;
+                res.render('admin-dashboard');
+                req.session.current_url = '/login-admin/admin-dashboard';
+            })
+        })
+    })  
+}
 module.exports = adminController;
