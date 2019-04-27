@@ -79,7 +79,7 @@ adminController.uploadAvatar = function(req, res) {
         }
     });
 };
-//Chart
+//Gender-chart
 adminController.getGender = function(req,res)
 {
     User.count({
@@ -100,8 +100,15 @@ adminController.getGender = function(req,res)
                 }
             }).then(count=>{
                 res.locals.lgbt=count;
-                res.render('admin-dashboard');
-                req.session.current_url = '/login-admin/admin-dashboard';
+                User.count({
+                    where : {
+                        gender: null
+                    }
+                }).then(count=>{
+                    res.locals.null=count;
+                    res.render('admin-dashboard');
+                    req.session.current_url = '/login-admin/admin-dashboard';
+                })
             })
         })
     })  
