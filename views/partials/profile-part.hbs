@@ -7,11 +7,7 @@
                 <img class="img-thumbnail my-3" style="border-radius:10px" src="{{imagepath}}" alt="avatar" width="200px" data-toggle="modal" data-target="#uploadavatarmodal">
                 <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
                     <div>Friend hired</div>
-                    <div>10</div>
-                </div>
-                <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
-                    <div>Money spent</div>
-                    <div>500.000 VNĐ</div>
+                    <div>{{../friendHired}}</div>
                 </div>
                 <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
                     <div>Account balance</div>
@@ -53,6 +49,14 @@
 
                             <script>
                                 $('#gender').val('{{gender}}');
+                            </script>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dateofbirth" class="control-label col-sm-2"><b>DoB:</b></label>
+                            <div class="col-sm-10"><input type="date" class="form-control my-2" name="dateofbirth" id="dateofbirth" required></div>
+
+                            <script>
+                                $("#dateofbirth").val(new Date('{{dateofbirth}}').toISOString().substring(0, 10));
                             </script>
                         </div>
                         <div class="form-group row">

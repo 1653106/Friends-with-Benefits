@@ -19,6 +19,7 @@ adminController.updateProfile = (req, res) => {
     User.update({
         name: req.body.adminname,
         gender: req.body.gender,
+        dateofbirth: req.body.dateofbirth,
         city: req.body.cityselect,
         phone: req.body.phone,
         email: req.body.email

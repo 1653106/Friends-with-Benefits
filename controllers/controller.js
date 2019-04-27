@@ -18,6 +18,7 @@ controller.login = (req, res) => {
             res.redirect('/login-admin')
         } else if (user != null) {
             req.session.username = user.username;
+            req.session.userid = user.id;
             res.redirect('/login-user');
         } else {
             req.session.error = 'Incorrect username or password!';
@@ -94,6 +95,7 @@ controller.getFriendDetail = (req, res, next) => {
             UserId: req.params.UserId
         }
     }).then(friend => {
+        console.log(friend.Feedbacks.length);
         let page = req.query.page || 1;
         let pageLimit = 3;
         let offset = (page - 1) * pageLimit;
@@ -103,6 +105,10 @@ controller.getFriendDetail = (req, res, next) => {
             limit: pageLimit,
             totalRows: friend.Feedbacks.length
         };
+
+        if (friend.Feedbacks.length < 1) {
+            pagination = null;
+        }
 
         friend.Feedbacks.sort((a, b) => {
             return new Date(b.updatedAt) - new Date(a.updatedAt);

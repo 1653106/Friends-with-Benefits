@@ -62,6 +62,8 @@ router.get('/settings-friend', (req, res) => {
 router.get('/error', (req, res) => {
     res.locals.error = req.session.error;
     res.render('error');
+
+    req.session.current_url = '/error';
 });
 
 //friend details

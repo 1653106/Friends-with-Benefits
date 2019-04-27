@@ -60,6 +60,10 @@ userController.getFriendDetail = (req, res, next) => {
             totalRows: friend.Feedbacks.length
         };
 
+        if (friend.Feedbacks.length < 1) {
+            pagination = null;
+        }
+
         friend.Feedbacks.sort((a, b) => {
             return new Date(b.updatedAt) - new Date(a.updatedAt);
         });
@@ -98,6 +102,7 @@ userController.updateProfile = (req, res) => {
     User.update({
         name: req.body.usr,
         gender: req.body.gender,
+        dateofbirth: req.body.dateofbirth,
         city: req.body.cityselect,
         phone: req.body.phone,
         email: req.body.email
@@ -316,19 +321,61 @@ userController.saveTransaction = (req, res) => {
                 username: req.session.username
             }
         }).then(user => {
-            console.log(friend.id);
-            Transaction.create({
-                UserId: user.id,
-                FriendId: friend.id,
-                totalprice: friend.price * req.body.priceperh,
-                hours: req.body.priceperh
-            });
+            if (user.wallet >= friend.price * req.body.priceperh) {
+                Transaction.create({
+                    UserId: user.id,
+                    FriendId: friend.id,
+                    totalprice: friend.price * req.body.priceperh,
+                    hours: req.body.priceperh
+                });
 
-            res.redirect(req.session.current_url);
+                User.update({
+                    wallet: user.wallet - friend.price * req.body.priceperh
+                }, {
+                    where: {
+                        username: req.session.username
+                    }
+                });
+
+                res.redirect(req.session.current_url);
+            } else {
+                req.session.error = 'Not enough money';
+                res.redirect('/login-user/error');
+            }
         });
     });
 };
 
+userController.loadTransaction = (req, res, next) => {
+    Transaction.findAll({
+        include: [{
+            model: models.Friend,
+            include: models.User
+        }],
+        where: {
+            UserId: req.session.userid
+        }
+    }).then(transactions => {
+        res.locals.transactions = transactions;
+        res.locals.moneySpent = 0;
+        transactions.forEach(element => {
+            res.locals.moneySpent += element.totalprice;
+        })
+        next();
+    });
+};
 
+userController.getFriendHired = (req, res, next) => {
+    Transaction.count({
+        where: {
+            UserId: req.session.userid
+        },
+        distinct: true,
+        col: 'FriendId'
+    }).then(count => {
+        res.locals.friendHired = count;
+        next();
+    });
+};
 
 module.exports = userController;
