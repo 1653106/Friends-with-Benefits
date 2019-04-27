@@ -10,10 +10,7 @@ adminRouter.get('/', (req, res) => {
     req.session.current_url = '/login-admin/admin-dashboard';
 });
 
-adminRouter.get('/admin-dashboard', (req, res) => {
-    res.render('admin-dashboard');
-    req.session.current_url = '/login-admin/admin-dashboard';
-});
+adminRouter.get('/admin-dashboard', adminController.getGender);
 
 //admin account
 adminRouter.get('/admin-account', (req, res) => {
