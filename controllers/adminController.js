@@ -104,9 +104,6 @@ adminController.getGender = function(req,res)
                 req.session.current_url = '/login-admin/admin-dashboard';
             })
         })
-    })
-   
-    
-    
+    })  
 }
 module.exports = adminController;
