@@ -55,13 +55,13 @@ userRouter.post('/feedback', userController.postFeedback, (req, res) => {
 });
 
 //settings profile
-userRouter.get('/settings-profile', (req, res) => {
+userRouter.get('/settings-profile', userController.getFriendHired, (req, res) => {
     res.render('settings-profile');
     req.session.current_url = '/login-user/settings-profile';
 });
 
 //settings transaction
-userRouter.get('/settings-transaction', (req, res) => {
+userRouter.get('/settings-transaction', userController.loadTransaction, (req, res) => {
     res.render('settings-transaction');
     req.session.current_url = '/login-user/settings-transaction';
 });
@@ -71,6 +71,13 @@ userRouter.get('/settings-friend', (req, res) => {
     res.render('settings-friend');
     req.session.current_url = '/login-user/settings-friend';
 });
+
+//error
+userRouter.get('/error', (req, res) => {
+    res.locals.error = req.session.error;
+    res.render('error');
+    req.session.current_url = '/login-user/error';
+})
 
 //update profile
 userRouter.post('/update-profile', userController.updateProfile);
@@ -88,6 +95,6 @@ userRouter.post('/add-fund', userController.addFund);
 userRouter.post('/upload-avatar', userController.uploadAvatar);
 
 //save Transaction
-userRouter.post('/save-transaction', userController.saveTransaction)
+userRouter.post('/save-transaction', userController.saveTransaction);
 
 module.exports = userRouter;
