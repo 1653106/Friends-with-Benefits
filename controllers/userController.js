@@ -1,7 +1,11 @@
 let userController = {};
 let models = require('../models');
+let sequelize = require('sequelize');
+let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
+
+const Op = sequelize.Op;
 
 //Load friendlist
 userController.getAllFriend = (req, res, next) => {
@@ -172,6 +176,76 @@ userController.becomeFriend = (req, res) => {
             });
         }
     });
+};
+
+// upload avatar
+
+let Storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, "./public/images");
+    },
+    filename: function(req, file, callback) {
+        callback(null, file.fieldname + "_" + req.session.username + ".png");
+    }
+});
+
+let upload = multer({ storage: Storage }).single("userAvatar");
+
+userController.uploadAvatar = function(req, res) {
+    upload(req, res, function(err) {
+        if (err) {
+            req.session.error = 'Upload fail!';
+            res.redirect('/error');
+        } else {
+            User.update({
+                imagepath: "/images/" + req.file.filename
+            }, {
+                where: {
+                    username: req.session.username
+                }
+            }).then(() => {
+                res.redirect('settings-profile');
+            });
+        }
+    });
+};
+
+userController.searchFriendByName = (req, res, next) => {
+    User.findAll({
+        include: [models.Friend],
+        where: {
+            name: {
+                [Op.like]: '%' + req.query.name + '%'
+            },
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    });
+};
+
+userController.searchFriendByFilter = (req, res, next) => {
+    User.findAll({
+        include: [{
+            model: models.Friend,
+            price: {
+                [Op.between]: [req.query.pricefrom, req.query.priceto]
+            }
+        }],
+        where: {
+            name: {
+                [Op.like]: '%' + req.query.name + '%'
+            },
+            gender: req.query.gender,
+
+            city: req.query.city,
+            role: 'f'
+        }
+    }).then(users => {
+        res.locals.users = users;
+        next();
+    })
 };
 
 module.exports = userController;
