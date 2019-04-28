@@ -13,8 +13,12 @@ controller.login = (req, res) => {
             password: req.body.password
         }
     }).then(user => {
-        if (user != null) {
+        if (user != null && user.username == 'admin' && user.role.trim() == 'a') {
             req.session.username = user.username;
+            res.redirect('/login-admin')
+        } else if (user != null) {
+            req.session.username = user.username;
+            req.session.userid = user.id;
             res.redirect('/login-user');
         } else {
             req.session.error = 'Incorrect username or password!';
@@ -66,12 +70,52 @@ controller.getAllFriend = (req, res, next) => {
 
 //Load friend detail
 controller.getFriendDetail = (req, res, next) => {
-    User.findOne({
-        include: [models.Friend],
+    // User.findOne({
+    //     include: [models.Friend],
+    //     where: {
+    //         id: req.params.UserId
+    //     }
+    // }).then(friend => {
+    //     res.locals.friend = friend;
+    //     next();
+    // });
+
+    Friend.findOne({
+        include: [{
+                model: models.User,
+            },
+            {
+                model: models.Feedback,
+                include: {
+                    model: models.User
+                }
+            }
+        ],
         where: {
-            id: req.params.UserId
+            UserId: req.params.UserId
         }
     }).then(friend => {
+        console.log(friend.Feedbacks.length);
+        let page = req.query.page || 1;
+        let pageLimit = 3;
+        let offset = (page - 1) * pageLimit;
+
+        let pagination = {
+            page: parseInt(page),
+            limit: pageLimit,
+            totalRows: friend.Feedbacks.length
+        };
+
+        if (friend.Feedbacks.length < 1) {
+            pagination = null;
+        }
+
+        friend.Feedbacks.sort((a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+
+        res.locals.pagination = pagination;
+        friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
         res.locals.friend = friend;
         next();
     });

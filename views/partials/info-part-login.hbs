@@ -1,116 +1,140 @@
 <!--Info Part-->
-    <div class="container my-4">
-        <div class="row">
-            <div class="col-sm-12 col-md-3" style="border-right-style: solid; border-right-color: #58c9ef">
-                <div class="text-center" style="background: white">
-                    <img class="img-thumbnail my-3" style="border-radius:10px" src="{{friend.imagepath}}" alt="avatar">
-                    <div class="text-center my-2">
-                        <h4 id="friend-status"></h4>
-                    </div>
-
-                    <script>
-                        if ('{{friend.Friend.status}}' == 'true') {
-                            $('#friend-status').text('Ready');
-                            $('#friend-status').css('color', '#1CCA00');
-                        } else {
-                            $('#friend-status').text('Busy');
-                            $('#friend-status').css('color', 'red');
-                        }      
-                    </script>
-
-                    <div class="text-center my-2">
-                        <p>Date joined: {{friend.Friend.createdAt}}</p>
-                    </div>
-                    <div class="text-center my-2">
-                        <i class="fa fa-facebook-square px-1" style="color: #3b5998; font-size: 3em"></i>
-                        <i class="fa fa-youtube px-1" style="color: #e52d27; font-size: 3em"></i>
-                    </div>
+{{#with friend}}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-3" style="border-right-style: solid; border-right-color: #58c9ef">
+            <div class="text-center" style="background: white">
+                <img class="img-thumbnail my-3" style="border-radius:10px" src="{{User.imagepath}}" alt="avatar">
+                <div class="text-center my-2">
+                    <h4 id="friend-status"></h4>
                 </div>
-            </div>
 
-            <div class="col-sm-12 col-md-6">
-                <div class="container">
-                    <div class="row py-3">
-                        <h2><b>{{friend.name}}</b></h2>
-                    </div>
+                <script>
+                    if ('{{status}}' == 'true') {
+                        $('#friend-status').text('Ready');
+                        $('#friend-status').css('color', '#1CCA00');
+                    } else {
+                        $('#friend-status').text('Busy');
+                        $('#friend-status').css('color', 'red');
+                    }
+                </script>
 
-                    <div class="row py-3">
-                        <h4><b>DESCRIPTION</b></h4>
-                    </div>
-
-                    <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
-                        <p>{{friend.Friend.description}}</p>
-                    </div>
-
-                    <div class="row py-3">
-                        <h4><b>DETAIL</b></h4>
-                    </div>
-
-                    <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
-                        <p>{{friend.Friend.detail}}</p>
-                    </div>
-
-                    <div class="row py-3">
-                        <h4><b>REVIEWS</b></h4>
-                    </div>
-
-                    <div class="row">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="row" style="float: left">
-                                    <img src="/images/avatar.jpeg" alt="avatar" class="avatar-crop mx-2 my-2">
-                                    <p><b>Love Grayson</b><br><span style="font-size: 0.5em">hh:mm:ss, dd/mm/yyyy</span></p>
-                                </div>
-
-                                <div style="float: right">
-                                    5/5
-                                </div>
-
-                                <div style="clear: both">
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, blanditiis.</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row" style="float: left">
-                                    <img src="/images/avatar.jpeg" alt="avatar" class="avatar-crop mx-2 my-2">
-                                    <p><b>Love Grayson</b><br><span style="font-size: 0.5em">hh:mm:ss, dd/mm/yyyy</span></p>
-                                </div>
-
-                                <div style="float: right">
-                                    5/5
-                                </div>
-
-                                <div style="clear: both">
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, blanditiis.</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row" style="float: left">
-                                    <img src="/images/avatar.jpeg" alt="avatar" class="avatar-crop mx-2 my-2">
-                                    <p><b>Love Grayson</b><br><span style="font-size: 0.5em">hh:mm:ss, dd/mm/yyyy</span></p>
-                                </div>
-
-                                <div style="float: right">
-                                    5/5
-                                </div>
-
-                                <div style="clear: both">
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, blanditiis.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-12" style="text-align: end"><input type="button" class="btn btn-custom" value="View more"></div>
+                <div class="text-center my-2">
+                    <p>Date joined: {{createdAt}}</p>
                 </div>
-            </div>
-
-            <div class="col-sm-12 col-md-3 py-3">
-                <div class="px-3 py-3" style="box-shadow: 3px 3px 10px gray">
-                    <h4>50.000 VNĐ</h4>
-                    <p>5/5 (20 reviews)</p>
-                    <input type="button" class="btn btn-custom col-sm-12" value="HIRE" style="font-size: 2em" data-toggle="modal" data-target="#modelId">
+                <div class="text-center my-2">
+                    <i class="fa fa-facebook-square px-1" style="color: #3b5998; font-size: 3em"></i>
+                    <i class="fa fa-youtube px-1" style="color: #e52d27; font-size: 3em"></i>
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-12 col-md-6">
+            <div class="container">
+                <div class="row py-3">
+                    <h2><b>{{User.name}}</b></h2>
+                </div>
+
+                <div class="row py-3">
+                    <h4><b>DESCRIPTION</b></h4>
+                </div>
+
+                <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
+                    <p>{{description}}</p>
+                </div>
+
+                <div class="row py-3">
+                    <h4><b>DETAIL</b></h4>
+                </div>
+
+                <div class="row px-3" style="border-bottom: 1px solid #58c9ef">
+                    <p>{{detail}}</p>
+                </div>
+
+                <div class="row py-3">
+                    <h4><b>FEEDBACK</b></h4>
+                </div>
+
+                <div class="row" style="border-bottom: 1px solid #58c9ef">
+                    <ul class="list-group list-group-flush">
+                        {{#each Feedbacks}}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <img src="{{User.imagepath}}" alt="avatar" class="avatar-crop mx-2 my-2">
+                                <p><b>{{User.name}}</b><br><span style="font-size: 0.5em">{{createdAt}}</span></p>
+                            </div>
+
+                            <div class="row col-sm-12">
+                                <p>{{rate}}<i class="fas fa-star" style="color: #EDB867"></i></p>
+                            </div>
+
+                            <!-- <script>
+                                $(function() {
+                                    for (i = 0; i < '{{rate}}'; i++) {
+                                        $('.starrating').append('<i class="fas fa-star" style="color: #EDB867"></i>');
+                                    }
+                                })
+                            </script> -->
+
+                            <div class="col-sm-12" style="word-break: break-all">
+                                {{comment}}
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class="row text-center py-3">
+                    {{{ paginate ../pagination leftText="Prev" rightText="Next" limit="3" paginationClass="pagination-style btn btn-custom"}}}
+                </div>
+
+                <div class="row py-3">
+                    <h4><b>ADD FEEDBACK</b></h4>
+                </div>
+
+                <div class="row px-3">
+                    <form action="/login-user/feedback" method="POST">
+                        <div class="form-group row">
+                            <label for="starrating" class="control-label col-sm-2">Rate:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="starrating" id="starrating">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                            </div>
+
+                            <script>
+                                $(function() {
+                                    $('#starrating').barrating({
+                                        theme: 'fontawesome-stars'
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div class="form-group row">
+                            <label for="comment" class="control-label col-sm-2">Comment: </label>
+                            <div class="col-sm-12"><textarea class="form-control" name="comment" id="comment" rows="5" cols="100" required></textarea></div>
+                            <input type='hidden' name='friendid' id="friendid" value="{{id}}" />
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-3 py-3">
+            <div class="px-3 py-3" style="box-shadow: 3px 3px 10px gray">
+                <h4>{{price}} VNĐ</h4>
+                <p>5/5 (20 reviews)</p>
+                <input type="button" class="btn btn-custom col-sm-12" value="HIRE" style="font-size: 2em" data-toggle="modal" data-target="#modelId">
+            </div>
+        </div>
     </div>
+</div>
+{{/with}}

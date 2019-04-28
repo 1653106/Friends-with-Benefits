@@ -1,98 +1,96 @@
 <!--Info Part-->
-    <div class="container my-4">
-        <div class="row">
-            <div class="col-sm-12 col-md-4" style="border-right-style: solid; border-right-color: #58c9ef">
-                <div class="text-center" style="background: white">
-                    <img class="img-thumbnail my-3" style="border-radius:10px" src="../images/avatar.jpeg" alt="avatar">
-                </div>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-4" style="border-right-style: solid; border-right-color: #58c9ef">
+            <div class="text-center" style="background: white">
+                <img class="img-thumbnail my-3" style="border-radius:10px" src="{{admin.imagepath}}" alt="avatar" width="200px">
             </div>
-            <div class="col-sm-12 col-md-8">
+        </div>
+        <div class="col-sm-12 col-md-8">
+            <div class="container">
+                <div class="row my-3">
+                    <div class="col-sm-12 col-md-3">
+                        <a href="admin-dashboard"><button type="button" class="btn btn-custom" style="width: 80%">Dashboard</button></a>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <a href="admin-profile"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Profile</button></a>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <a href="admin-account"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Account</button></a>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <a href="admin-transaction"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Transaction</button></a>
+                    </div>
+                </div>
+
                 <div class="container">
-                    <div class="row my-3">
-                        <div class="col-sm-12 col-md-3">
-                            <a href="admin-dashboard"><button type="button" class="btn btn-custom" style="width: 80%">Dashboard</button></a>
-                        </div>
-                        <div class="col-sm-12 col-md-3">
-                            <a href="admin-profile"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Profile</button></a>
-                        </div>
-                        <div class="col-sm-12 col-md-3">
-                            <a href="admin-account"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Account</button></a>
-                        </div>
-                        <div class="col-sm-12 col-md-3">
-                            <a href="admin-transaction"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Transaction</button></a>
+                    <div class="row">
+                        <div class="card-deck mx-auto">
+                            <a href="admin-users-chart">
+                                <div class="card border-custom" style="width: 9em">
+                                    <div class="card-body bg-custom text-white text-center">
+                                        <h4 class="card-title icon-dashboard"><i class="fa fa-user-plus"></i> <span class="px-3">30</span></h4>
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <p class="card-text"><b>Users</b></p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="admin-transactions-chart">
+                                <div class="card border-custom" style="width: 9em">
+                                    <div class="card-body bg-custom text-white text-center">
+                                        <h4 class="card-title icon-dashboard"><i class="fa fa-file"></i><span class="px-3">20</span></h4>
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <p class="card-text"><b>Transactions</b></p>
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
                     </div>
+                </div>
 
-                    <div class="container">
-                        <div class="row">
-                            <h3><b>Today infomation<br></b></h3>
+                <div class="container py-3">
+                    <h3 class="text-center"><b>Statitics</b></h3>
+                    {{!-- <div class="row">
+                        <h5>Revenue</h5>
+                        <canvas id="revenue-chart"></canvas>
+                    </div> --}}
 
-                            <div class="card-deck mx-auto">
-                                <a href="admin-users-chart">
-                                    <div class="card border-custom" style="width: 9em">
-                                        <div class="card-body bg-custom text-white text-center">
-                                            <h4 class="card-title icon-dashboard"><i class="fa fa-user-plus"></i> <span class="px-3">30</span></h4>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <p class="card-text"><b>New users</b></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="admin-guests-chart">
-                                    <div class="card border-custom" style="width: 9em">
-                                        <div class="card-body bg-custom text-white text-center">
-                                            <h4 class="card-title icon-dashboard"><i class="fa fa-user"></i><span class="px-3">5</span></h4>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <p class="card-text"><b>Guests</b></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="admin-transactions-chart">
-                                    <div class="card border-custom" style="width: 9em">
-                                        <div class="card-body bg-custom text-white text-center">
-                                            <h4 class="card-title icon-dashboard"><i class="fa fa-file"></i><span class="px-3">20</span></h4>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <p class="card-text"><b>Transactions</b></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-
-                                <a href="admin-reports-chart">
-                                    <div class="card border-custom" style="width: 9em">
-                                        <div class="card-body bg-custom text-white text-center">
-                                            <h4 class="card-title icon-dashboard"><i class="fa fa-warning"></i><span class="px-3">5</span></h4>
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <p class="card-text"><b>Reports</b></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container py-3">
-                        <h3 class="text-center"><b>Statitics</b></h3>
-                        <div class="row">
-                            <h5>Revenue</h5>
-                            <canvas id="revenue-chart"></canvas>
-                        </div>
-
-                        <div class="row">
-                            <h5>Gender</h5>
-                            <canvas id="gender-chart"></canvas>
-                        </div>
+                    <div class="row">
+                        <h5>Gender</h5>
+                        <canvas id="gender-chart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<script>
+//gender chart
+var ctx = document.getElementById('gender-chart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'doughnut',
+
+    // The data for our dataset
+    data: {
+        labels: ['Male', 'Female','LBGT',"Undefined"],
+        datasets: [{
+            backgroundColor: [
+                'rgba(255, 173, 88, 0.5)',
+                'rgba(88, 201, 239, 0.5)',
+                'rgba(255,105,180,0.5)',
+                'rgba(0,0,0,0.5)'
+            ],
+            data: [{{male}}, {{female}},{{lgbt}},{{null}}]
+        }]
+    },
+    // Configuration options go here
+    options: {}
+})
+</script>

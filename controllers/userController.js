@@ -4,6 +4,8 @@ let sequelize = require('sequelize');
 let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
+let Feedback = models.Feedback;
+let Transaction = models.Transaction;
 
 const Op = sequelize.Op;
 
@@ -23,13 +25,51 @@ userController.getAllFriend = (req, res, next) => {
 
 //Load friend detail
 userController.getFriendDetail = (req, res, next) => {
-    console.log(req.params.UserId);
-    User.findOne({
-        include: [models.Friend],
+    // User.findOne({
+    //     include: [models.Friend],
+    //     where: {
+    //         id: req.params.UserId
+    //     }
+    // }).then(friendDetail => {
+    //     res.locals.friendDetail = friendDetail;
+    //     next();
+    // });
+
+    Friend.findOne({
+        include: [{
+                model: models.User,
+            },
+            {
+                model: models.Feedback,
+                include: {
+                    model: models.User
+                }
+            }
+        ],
         where: {
-            id: req.params.UserId
+            UserId: req.params.UserId
         }
     }).then(friend => {
+        let page = req.query.page || 1;
+        let pageLimit = 3;
+        let offset = (page - 1) * pageLimit;
+
+        let pagination = {
+            page: parseInt(page),
+            limit: pageLimit,
+            totalRows: friend.Feedbacks.length
+        };
+
+        if (friend.Feedbacks.length < 1) {
+            pagination = null;
+        }
+
+        friend.Feedbacks.sort((a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+
+        res.locals.pagination = pagination;
+        friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
         res.locals.friend = friend;
         next();
     });
@@ -62,6 +102,7 @@ userController.updateProfile = (req, res) => {
     User.update({
         name: req.body.usr,
         gender: req.body.gender,
+        dateofbirth: req.body.dateofbirth,
         city: req.body.cityselect,
         phone: req.body.phone,
         email: req.body.email
@@ -179,7 +220,6 @@ userController.becomeFriend = (req, res) => {
 };
 
 // upload avatar
-
 let Storage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, "./public/images");
@@ -204,7 +244,7 @@ userController.uploadAvatar = function(req, res) {
                     username: req.session.username
                 }
             }).then(() => {
-                res.redirect('settings-profile');
+                res.redirect('/login-user/settings-profile');
             });
         }
     });
@@ -246,6 +286,96 @@ userController.searchFriendByFilter = (req, res, next) => {
         res.locals.users = users;
         next();
     })
+};
+
+//feedback
+userController.postFeedback = (req, res, next) => {
+    User.findOne({
+        where: {
+            username: req.session.username
+        }
+    }).then(commenter => {
+        Feedback.create({
+            comment: req.body.comment,
+            rate: req.body.starrating,
+            FriendId: req.body.friendid,
+            UserId: commenter.id
+        }).then(() => {
+            next();
+        }).catch(error => {
+            res.send(error);
+        })
+    })
+};
+
+userController.saveTransaction = (req, res) => {
+    console.log(req.session.friendId);
+
+    Friend.findOne({
+        where: {
+            UserId: req.session.friendId
+        }
+    }).then(friend => {
+        User.findOne({
+            where: {
+                username: req.session.username
+            }
+        }).then(user => {
+            if (user.wallet >= friend.price * req.body.priceperh) {
+                Transaction.create({
+                    UserId: user.id,
+                    FriendId: friend.id,
+                    totalprice: friend.price * req.body.priceperh,
+                    hours: req.body.priceperh
+                });
+
+                User.update({
+                    wallet: user.wallet - friend.price * req.body.priceperh
+                }, {
+                    where: {
+                        username: req.session.username
+                    }
+                });
+
+                res.redirect(req.session.current_url);
+            } else {
+                req.session.error = 'Not enough money';
+                res.redirect('/login-user/error');
+            }
+        });
+    });
+};
+
+userController.loadTransaction = (req, res, next) => {
+    Transaction.findAll({
+        include: [{
+            model: models.Friend,
+            include: models.User
+        }],
+        where: {
+            UserId: req.session.userid
+        }
+    }).then(transactions => {
+        res.locals.transactions = transactions;
+        res.locals.moneySpent = 0;
+        transactions.forEach(element => {
+            res.locals.moneySpent += element.totalprice;
+        })
+        next();
+    });
+};
+
+userController.getFriendHired = (req, res, next) => {
+    Transaction.count({
+        where: {
+            UserId: req.session.userid
+        },
+        distinct: true,
+        col: 'FriendId'
+    }).then(count => {
+        res.locals.friendHired = count;
+        next();
+    });
 };
 
 module.exports = userController;

@@ -17,11 +17,15 @@ app.use(session({
 
 //Set view engine
 let expressHbs = require('express-handlebars');
+let paginate = require('express-handlebars-paginate');
 app.engine('hbs', expressHbs({
     extname: 'hbs',
     defaultLayout: 'layout',
     layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials/'
+    partialsDir: __dirname + '/views/partials/',
+    helpers: {
+        paginate: paginate.createPagination
+    }
 }));
 app.set('view engine', 'hbs');
 
@@ -31,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Set static public folder
 app.use(express.static(__dirname + '/public'));
+app.use('/bar-rating', express.static(__dirname + '/node_modules/jquery-bar-rating/dist/'));
 
 //Define routes
 app.use('/', router);
