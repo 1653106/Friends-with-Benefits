@@ -8,11 +8,22 @@
             </div>
 
             <div class="modal-body">
-                <form id="addfund" action="/login-user/add-fund" method="POST">
+                <form id="addfund" action="" method="POST">
                     <input type="number" name="fund" class="form-control my-2" placeholder="Enter amount of fund" min="10000" required>
                     <input type="password" name="password" class="form-control my-2" placeholder="Enter password" required>
                     <p style="text-align: end">
-                        <input type="submit" class="btn btn-custom my-2" value="Add fund">
+                        <button type="submit" id="addfundbtn" class="btn btn-custom my-2" value="addfund">Add fund</button>
+                        <button type="submit" id="withdrawbtn" class="btn btn-custom-primary my-2" value="withdraw">Withdraw</button>
+
+                        <script>
+                            $('#addfundbtn').click(() => {
+                                $('#addfund').attr('action', '/login-user/add-fund');
+                            });
+
+                            $('#withdrawbtn').click(() => {
+                                $('#addfund').attr('action', '/login-user/withdraw');
+                            });
+                        </script>
                     </p>
                 </form>
             </div>

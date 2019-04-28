@@ -4,18 +4,22 @@
             <div class="col-sm-12 col-md-4" style="border-right-style: solid; border-right-color: #58c9ef">
                 <div class="text-center" style="background: white">
                     <img class="img-thumbnail my-3" style="border-radius:10px" src="{{user.imagepath}}" alt="avatar" width="200px">
-                    <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                    {{!-- <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
                         <div>Revenue per week</div>
                         <div>100.000 VNĐ</div>
-                    </div>
+                    </div> --}}
                     <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
                         <div>Average review</div>
-                        <div>5/5</div>
+                        <div>{{avgReview}} <i class="fas fa-star" style="color: #EDB867"></i></div>
                     </div>
                     <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
+                        <div>Account balance</div>
+                        <div>{{user.wallet}} VND <button type="button" class="btn-hidden" data-toggle="modal" data-target="#addfundmodal"><i class="fa fa-plus-circle" style="color: #FFAD58"></i></button></div>
+                    </div>
+                    {{!-- <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
                         <div>Reliability</div>
                         <div>80%</div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-sm-12 col-md-8">

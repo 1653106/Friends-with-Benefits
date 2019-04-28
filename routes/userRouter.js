@@ -67,7 +67,7 @@ userRouter.get('/settings-transaction', userController.loadTransaction, (req, re
 });
 
 //settings friend
-userRouter.get('/settings-friend', (req, res) => {
+userRouter.get('/settings-friend', userController.getAverageReview, (req, res) => {
     res.render('settings-friend');
     req.session.current_url = '/login-user/settings-friend';
 });
@@ -90,6 +90,9 @@ userRouter.post('/become-friend', userController.becomeFriend);
 
 //add fund
 userRouter.post('/add-fund', userController.addFund);
+
+//withdraw
+userRouter.post('/withdraw', userController.withdraw);
 
 //upload avatar
 userRouter.post('/upload-avatar', userController.uploadAvatar);
