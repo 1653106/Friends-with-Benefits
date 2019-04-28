@@ -45,19 +45,19 @@
                                 <th scope="col">City</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Link</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each account}}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Love Grayson</td>
-                                <td>Female</td>
-                                <td>Ho Chi Minh</td>
-                                <td>01234567890</td>
-                                <td>lovegrayson@gmail.com</td>
-                                <td>fb.com/LoveGrayson</td>
+                                <th scope="row">{{id}}</th>
+                                <td>{{name}}</td>
+                                <td>{{gender}}</td>
+                                <td>{{city}}</td>
+                                <td>{{phone}}</td>
+                                <td>{{email}}</td>
                             </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

@@ -114,4 +114,13 @@ adminController.getGender = function(req,res)
         })
     })  
 }
+//Load account
+adminController.loadAccount = function (req,res) {
+    User.findAll({
+    }).then(User=>{
+        res.locals.account=User;
+        res.render('admin-account');
+        req.session.current_url = '/login-admin/admin-account';
+    })
+}
 module.exports = adminController;
