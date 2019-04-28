@@ -13,10 +13,7 @@ adminRouter.get('/', (req, res) => {
 adminRouter.get('/admin-dashboard', adminController.getGender);
 
 //admin account
-adminRouter.get('/admin-account', (req, res) => {
-    res.render('admin-account');
-    req.session.current_url = '/login-admin/admin-account';
-});
+adminRouter.get('/admin-account', adminController.loadAccount);
 
 //admin profile
 adminRouter.get('/admin-profile', (req, res) => {
