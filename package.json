@@ -5,10 +5,13 @@
     "main": "index.js",
     "dependencies": {
         "body-parser": "^1.18.3",
+        "ember-truth-helpers": "^2.1.0",
         "express": "^4.16.4",
         "express-handlebars": "^3.0.2",
         "express-handlebars-paginate": "^1.0.3",
         "express-session": "^1.15.6",
+        "handlebars-helper-equal": "^1.0.0",
+        "hbs": "^4.0.4",
         "jquery-bar-rating": "^1.2.2",
         "multer": "^1.4.1",
         "pg": "^7.9.0",
