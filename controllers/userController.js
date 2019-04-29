@@ -71,6 +71,17 @@ userController.getFriendDetail = (req, res, next) => {
         res.locals.pagination = pagination;
         friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
         res.locals.friend = friend;
+
+        //--------------------------------------------------------------------
+
+        sumReview = 0;
+        let count = 0;
+        friend.Feedbacks.forEach(element => {
+            sumReview += element.rate;
+            count++;
+        })
+
+        res.locals.avgReview = Math.round((sumReview / count) * 100) / 100;
         next();
     });
 };
@@ -153,7 +164,35 @@ userController.addFund = (req, res) => {
             req.session.error = 'Incorrect password!';
             res.redirect('/error');
         }
-    })
+    });
+};
+
+userController.withdraw = (req, res) => {
+    User.findOne({
+        where: {
+            username: req.session.username
+        }
+    }).then(user => {
+        if (parseInt(user.wallet) < parseInt(req.body.fund)) {
+            req.session.error = 'Incorrect password!';
+            res.redirect('/error');
+        } else {
+            if (user.password == req.body.password) {
+                User.update({
+                    wallet: parseInt(user.wallet) - parseInt(req.body.fund)
+                }, {
+                    where: {
+                        username: user.username
+                    }
+                }).then(() => {
+                    res.redirect(req.session.current_url);
+                });
+            } else {
+                req.session.error = 'Incorrect password!';
+                res.redirect('/error');
+            }
+        }
+    });
 };
 
 userController.becomeFriend = (req, res) => {
@@ -374,6 +413,25 @@ userController.getFriendHired = (req, res, next) => {
         col: 'FriendId'
     }).then(count => {
         res.locals.friendHired = count;
+        next();
+    });
+};
+
+userController.getAverageReview = (req, res, next) => {
+    Friend.findOne({
+        include: models.Feedback,
+        where: {
+            UserId: req.session.userid
+        }
+    }).then(friend => {
+        sumReview = 0;
+        let count = 0;
+        friend.Feedbacks.forEach(element => {
+            sumReview += element.rate;
+            count++;
+        })
+
+        res.locals.avgReview = Math.round((sumReview / count) * 100) / 100;
         next();
     });
 };
