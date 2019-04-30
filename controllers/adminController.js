@@ -3,6 +3,7 @@ let models = require('../models');
 let sequelize = require('sequelize');
 let multer = require('multer');
 let User = models.User;
+let Friend = models.Friend;
 const Op = sequelize.Op;
 
 adminController.getByID = (req, res, next) => {
@@ -349,10 +350,21 @@ adminController.loadAccount = (req, res) => {
                     break;
             }
         })
-
         res.locals.account = users;
-        res.render('admin-account');
-        req.session.current_url = '/login-admin/admin-account';
+        User.count({
+            where: {
+                username: {
+                    [Op.not]: "admin"
+                }
+            }
+        }).then(count=>{
+            res.locals.totalAcc=count;
+            Friend.count({}).then(count=>{
+                res.locals.totalFriend=count;
+                res.render('admin-account');
+                req.session.current_url = '/login-admin/admin-account';
+            })
+        })
     })
 }
 
