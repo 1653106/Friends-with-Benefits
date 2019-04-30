@@ -133,7 +133,7 @@ adminController.loadAccount = function(req, res) {
                     element.gender = 'LGBT';
                     break;
                 default:
-                    element.gender = "Unknown";
+                    element.gender = 'Unknown';
                     break;
             }
 
