@@ -16,9 +16,18 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     User.associate = function(models) {
         // associations can be defined here
-        User.hasOne(models.Friend);
-        User.hasMany(models.Feedback);
-        User.hasMany(models.Transaction)
+        User.hasOne(models.Friend, {
+            onDelete: 'CASCADE',
+            hooks: true
+        });
+        User.hasMany(models.Feedback, {
+            onDelete: 'CASCADE',
+            hooks: true
+        });
+        User.hasMany(models.Transaction, {
+            onDelete: 'CASCADE',
+            hooks: true
+        });
     };
     return User;
 };

@@ -50,39 +50,43 @@ userController.getFriendDetail = (req, res, next) => {
             UserId: req.params.UserId
         }
     }).then(friend => {
-        let page = req.query.page || 1;
-        let pageLimit = 3;
-        let offset = (page - 1) * pageLimit;
+        if (friend != null) {
+            let page = req.query.page || 1;
+            let pageLimit = 3;
+            let offset = (page - 1) * pageLimit;
 
-        let pagination = {
-            page: parseInt(page),
-            limit: pageLimit,
-            totalRows: friend.Feedbacks.length
-        };
+            let pagination = {
+                page: parseInt(page),
+                limit: pageLimit,
+                totalRows: friend.Feedbacks.length
+            };
 
-        if (friend.Feedbacks.length < 1) {
-            pagination = null;
+            if (friend.Feedbacks.length < 1) {
+                pagination = null;
+            }
+
+            friend.Feedbacks.sort((a, b) => {
+                return new Date(b.updatedAt) - new Date(a.updatedAt);
+            });
+
+            res.locals.pagination = pagination;
+            friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
+            res.locals.friend = friend;
+
+            //--------------------------------------------------------------------
+
+            sumReview = 0;
+            let count = 0;
+            friend.Feedbacks.forEach(element => {
+                sumReview += element.rate;
+                count++;
+            })
+
+            res.locals.avgReview = Math.round((sumReview / count) * 100) / 100;
+            next();
+        } else {
+            res.redirect('/login-user/settings-friend');
         }
-
-        friend.Feedbacks.sort((a, b) => {
-            return new Date(b.updatedAt) - new Date(a.updatedAt);
-        });
-
-        res.locals.pagination = pagination;
-        friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
-        res.locals.friend = friend;
-
-        //--------------------------------------------------------------------
-
-        sumReview = 0;
-        let count = 0;
-        friend.Feedbacks.forEach(element => {
-            sumReview += element.rate;
-            count++;
-        })
-
-        res.locals.avgReview = Math.round((sumReview / count) * 100) / 100;
-        next();
     });
 };
 
@@ -419,19 +423,26 @@ userController.getFriendHired = (req, res, next) => {
 
 userController.getAverageReview = (req, res, next) => {
     Friend.findOne({
-        include: models.Feedback,
+        include: [{ model: models.Feedback, required: false }],
         where: {
             UserId: req.session.userid
         }
     }).then(friend => {
+        if (friend == null) {
+            res.locals.avgReview = 0;
+            next();
+        }
+
         sumReview = 0;
         let count = 0;
+
         friend.Feedbacks.forEach(element => {
             sumReview += element.rate;
             count++;
-        })
+        });
 
         res.locals.avgReview = Math.round((sumReview / count) * 100) / 100;
+
         next();
     });
 };

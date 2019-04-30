@@ -13,7 +13,7 @@ adminRouter.get('/', (req, res) => {
 adminRouter.get('/admin-dashboard', adminController.getGender);
 
 //admin account
-adminRouter.get('/admin-account', adminController.loadAccount);
+adminRouter.get('/admin-account', adminController.countTotalUsers, adminController.countTotalFriends, adminController.loadAccount);
 
 //admin profile
 adminRouter.get('/admin-profile', (req, res) => {

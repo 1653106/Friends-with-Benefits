@@ -117,6 +117,32 @@ adminController.getGender = function(req, res) {
     })
 }
 
+adminController.countTotalUsers = (req, res, next) => {
+    User.count({
+        where: {
+            username: {
+                [Op.not]: "admin"
+            }
+        }
+    }).then(count => {
+        res.locals.totalAccount = count;
+        next();
+    })
+}
+
+adminController.countTotalFriends = (req, res, next) => {
+    Friend.count({
+        where: {
+            UserId: {
+                [Op.not]: null
+            }
+        }
+    }).then(count => {
+        res.locals.totalFriend = count;
+        next();
+    })
+}
+
 //delete account
 adminController.deleteAccount = (req, res) => {
     User.destroy({
@@ -351,20 +377,8 @@ adminController.loadAccount = (req, res) => {
             }
         })
         res.locals.account = users;
-        User.count({
-            where: {
-                username: {
-                    [Op.not]: "admin"
-                }
-            }
-        }).then(count=>{
-            res.locals.totalAcc=count;
-            Friend.count({}).then(count=>{
-                res.locals.totalFriend=count;
-                res.render('admin-account');
-                req.session.current_url = '/login-admin/admin-account';
-            })
-        })
+        res.render('admin-account');
+        req.session.current_url = '/login-admin/admin-account';
     })
 }
 

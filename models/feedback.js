@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     Feedback.associate = function(models) {
         // associations can be defined here
-        Feedback.belongsTo(models.User);
+        Feedback.belongsTo(models.User, {
+            onDelete: 'CASCADE',
+            hooks: true
+        });
         Feedback.belongsTo(models.Friend);
     };
     return Feedback;
