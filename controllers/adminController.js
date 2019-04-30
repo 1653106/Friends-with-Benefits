@@ -118,23 +118,39 @@ adminController.getGender = function(req, res) {
 
 //Load account
 adminController.loadAccount = function(req, res) {
-    User.findAll({}).then(users => {
+    User.findAll({
+        where: {
+            username: {
+                [Op.not]: "admin"
+            }
+        }
+    }).then(users => {
         users.forEach(element => {
             element.phone = (element.phone != null) ? element.phone : 'Unknown';
 
-            switch (element.gender) {
-                case 'm':
-                    element.gender = 'Male';
-                    break;
-                case 'f':
-                    element.gender = 'Female';
-                    break;
-                case 'l':
-                    element.gender = 'LGBT';
-                    break;
-                default:
-                    element.gender = 'Unknown';
-                    break;
+            // switch (element.gender) {
+            //     case 'm':
+            //         element.gender = 'Male';
+            //         break;
+            //     case 'f':
+            //         element.gender = 'Female';
+            //         break;
+            //     case 'l':
+            //         element.gender = 'LGBT';
+            //         break;
+            //     default:
+            //         element.gender = 'Unknown';
+            //         break;
+            // }
+
+            if (element['gender'].trim() == 'l') {
+                element['gender'] = "LGBT";
+            } else
+            if (element['gender'].trim() == 'f') {
+                element['gender'] = "Female";
+            } else
+            if (element['gender'].trim() == 'm') {
+                element['gender'] = "Male";
             }
 
             switch (element.city) {
