@@ -66,4 +66,9 @@ adminRouter.post('/change-password', adminController.changePassword);
 //upload avatar
 adminRouter.post('/upload-avatar', adminController.uploadAvatar);
 
+// //Post userchart
+// adminRouter.post('/user-chart',(req, res) => {
+//    console.log('OK');
+// });
+
 module.exports = adminRouter;

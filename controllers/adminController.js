@@ -1,7 +1,9 @@
 let adminController = {};
 let models = require('../models');
+let sequelize = require('sequelize');
 let multer = require('multer');
 let User = models.User;
+const Op = sequelize.Op;
 
 adminController.getByID = (req, res, next) => {
     User.findOne({
@@ -82,38 +84,39 @@ adminController.uploadAvatar = function(req, res) {
 };
 //Gender-chart
 adminController.getGender = function(req, res) {
+    User.count({
+        where: {
+            gender: "f"
+        }
+    }).then(count => {
+        res.locals.female = count;
         User.count({
             where: {
-                gender: "f"
+                gender: "m"
             }
         }).then(count => {
-            res.locals.female = count;
+            res.locals.male = count;
             User.count({
                 where: {
-                    gender: "m"
+                    gender: "l"
                 }
             }).then(count => {
-                res.locals.male = count;
+                res.locals.lgbt = count;
                 User.count({
                     where: {
-                        gender: "l"
+                        gender: null
                     }
                 }).then(count => {
-                    res.locals.lgbt = count;
-                    User.count({
-                        where: {
-                            gender: null
-                        }
-                    }).then(count => {
-                        res.locals.null = count;
-                        res.render('admin-dashboard');
-                        req.session.current_url = '/login-admin/admin-dashboard';
-                    })
+                    res.locals.null = count;
+                    res.render('admin-dashboard');
+                    req.session.current_url = '/login-admin/admin-dashboard';
                 })
             })
         })
-    }
-    //Load account
+    })
+}
+
+//Load account
 adminController.loadAccount = function(req, res) {
     User.findAll({}).then(users => {
         users.forEach(element => {
@@ -334,4 +337,5 @@ adminController.loadAccount = function(req, res) {
         req.session.current_url = '/login-admin/admin-account';
     })
 }
+
 module.exports = adminController;

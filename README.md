@@ -62,6 +62,7 @@ C. BackEnd
 [Đỗ Mạnh Tiến](https://github.com/1653087)  
 [Đinh Trần Toản](https://github.com/1653092)  
 [HSIAO (Tiu) Kiều Vỹ](https://github.com/1653106)  
+[Nguyễn Anh Tú](https://github.com/1653142)  
 
 ## Figma
 https://www.figma.com/file/UPHxujAaTOJJ2dpketINcGVP/F.w.B
