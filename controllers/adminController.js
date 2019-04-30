@@ -128,29 +128,20 @@ adminController.loadAccount = function(req, res) {
         users.forEach(element => {
             element.phone = (element.phone != null) ? element.phone : 'Unknown';
 
-            // switch (element.gender) {
-            //     case 'm':
-            //         element.gender = 'Male';
-            //         break;
-            //     case 'f':
-            //         element.gender = 'Female';
-            //         break;
-            //     case 'l':
-            //         element.gender = 'LGBT';
-            //         break;
-            //     default:
-            //         element.gender = 'Unknown';
-            //         break;
-            // }
-
-            if (element['gender'].trim() == 'l') {
-                element['gender'] = "LGBT";
-            } else
-            if (element['gender'].trim() == 'f') {
-                element['gender'] = "Female";
-            } else
-            if (element['gender'].trim() == 'm') {
-                element['gender'] = "Male";
+            let gender = (element.gender == undefined) ? '' : element.gender.trim();
+            switch (gender) {
+                case 'm':
+                    element.gender = 'Male';
+                    break;
+                case 'f':
+                    element.gender = 'Female';
+                    break;
+                case 'l':
+                    element.gender = 'LGBT';
+                    break;
+                default:
+                    element.gender = 'Unknown';
+                    break;
             }
 
             switch (element.city) {
