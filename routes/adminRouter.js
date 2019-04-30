@@ -66,6 +66,9 @@ adminRouter.post('/change-password', adminController.changePassword);
 //upload avatar
 adminRouter.post('/upload-avatar', adminController.uploadAvatar);
 
+//delete account
+adminRouter.get('/delete/:id', adminController.deleteAccount);
+
 // //Post userchart
 // adminRouter.post('/user-chart',(req, res) => {
 //    console.log('OK');
