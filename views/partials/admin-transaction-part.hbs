@@ -5,12 +5,8 @@
             <div class="text-center" style="background: white">
                 <img class="img-thumbnail my-3" style="border-radius:10px" src="{{admin.imagepath}}" alt="avatar" width="200px">
                 <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
-                    <div>Total transactions today</div>
-                    <div>50</div>
-                </div>
-                <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
-                    <div>Total reports</div>
-                    <div>0</div>
+                    <div>Total transactions</div>
+                    <div>{{totalTransactions}}</div>
                 </div>
             </div>
         </div>
@@ -37,30 +33,22 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Date created</th>
                                 <th scope="col">Hirer</th>
                                 <th scope="col">Friend</th>
-                                <th scope="col">Total payment</th>
+                                <th scope="col">Total price</th>
                                 <th scope="col">State</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="clickable-tr" data-href="admin-transaction-details">
-                                <th scope="row">1</th>
-                                <td>15/01/2019</td>
-                                <td>Hsiao</td>
-                                <td>Love Grayson</td>
-                                <td>Free</td>
-                                <td>Pending</td>
+                            {{#each transactions}}
+                            <tr onclick="window.location='/login-admin/transaction-details/{{id}}';">
+                                <th scope="row">{{id}}</th>
+                                <td>{{User.name}}</td>
+                                <td>{{Friend.User.name}}</td>
+                                <td>{{totalprice}}</td>
+                                <td>{{status}}</td>
                             </tr>
-                            <tr class="clickable-tr" data-href="admin-transaction-details">
-                                <th scope="row">2</th>
-                                <td>10/1/2019</td>
-                                <td>Manh Tien D</td>
-                                <td>Ryu Duke</td>
-                                <td>100.000 VND</td>
-                                <td>Completed</td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

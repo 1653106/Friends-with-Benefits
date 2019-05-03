@@ -22,16 +22,10 @@ adminRouter.get('/admin-profile', (req, res) => {
 });
 
 //admin transaction
-adminRouter.get('/admin-transaction', (req, res) => {
-    res.render('admin-transaction');
-    req.session.current_url = '/login-admin/admin-transaction';
-});
+adminRouter.get('/admin-transaction', adminController.countTransactions, adminController.loadTransaction);
 
 //admin transaction details
-adminRouter.get('/admin-transaction-details', (req, res) => {
-    res.render('admin-transaction-details');
-    req.session.current_url = '/login-admin/admin-transaction-details';
-});
+adminRouter.get('/transaction-details/:id', adminController.countTransactions, adminController.getTransactionByID);
 
 //admin guests chart
 adminRouter.get('/admin-guests-chart', (req, res) => {

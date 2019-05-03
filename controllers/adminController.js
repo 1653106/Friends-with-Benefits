@@ -4,6 +4,7 @@ let sequelize = require('sequelize');
 let multer = require('multer');
 let User = models.User;
 let Friend = models.Friend;
+let Transaction = models.Transaction;
 const Op = sequelize.Op;
 
 adminController.getByID = (req, res, next) => {
@@ -379,6 +380,50 @@ adminController.loadAccount = (req, res) => {
         res.locals.account = users;
         res.render('admin-account');
         req.session.current_url = '/login-admin/admin-account';
+    })
+}
+
+adminController.countTransactions = (req, res, next) => {
+    Transaction.count().then(count => {
+        res.locals.totalTransactions = count;
+        next();
+    })
+}
+
+adminController.loadTransaction = (req, res) => {
+    Transaction.findAll({
+        include: [{
+                model: models.Friend,
+                include: models.User
+            },
+            {
+                model: models.User
+            }
+        ],
+    }).then(transactions => {
+        res.locals.transactions = transactions;
+        res.render('admin-transaction');
+        res.session.current_url = '/login-admin/admin-transaction';
+    })
+}
+
+adminController.getTransactionByID = (req, res) => {
+    Transaction.findOne({
+        include: [{
+                model: models.Friend,
+                include: models.User
+            },
+            {
+                model: models.User
+            }
+        ],
+        where: {
+            id: req.params.id
+        }
+    }).then(transaction => {
+        res.locals.transaction = transaction;
+        res.render('admin-transaction-details');
+        req.session.current_url = '/login-admin/admin-transaction-details';
     })
 }
 

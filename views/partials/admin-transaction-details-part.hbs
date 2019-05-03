@@ -6,11 +6,7 @@
                 <img class="img-thumbnail my-3" style="border-radius:10px" src="{{admin.imagepath}}" alt="avatar" width="200px">
                 <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
                     <div>Total transactions today</div>
-                    <div>50</div>
-                </div>
-                <div class="text-center mx-5 my-2" style=" border-style:solid; border-radius: 8px; background-color: white; border-color: #58c9ef; border-width: 1px ">
-                    <div>Total reports</div>
-                    <div>0</div>
+                    <div>{{totalTransactions}}</div>
                 </div>
             </div>
         </div>
@@ -22,51 +18,53 @@
                     </div>
 
                     <div class="col-sm-12 col-md-2">
-                        <a href="admin-transaction"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Back</button></a>
+                        <a href="/login-admin/admin-transaction"><button type="button" class="btn btn-custom-primary-reverse" style="width: 80%">Back</button></a>
                     </div>
                 </div>
 
+                {{#with transaction}}
                 <div class="container">
                     <div class="form-group row">
                         <label for="transid" class="control-label col-sm-3"><b>ID:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="transid" placeholder="1" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="transid" value="{{id}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="datecreated" class="control-label col-sm-3"><b>Date created:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="datecreated" placeholder="dd/mm/yyyy" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="datecreated" value="{{createdAt}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="hirer" class="control-label col-sm-3"><b>Hirer:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="hirer" placeholder="Hsiao Kieu Vy" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="hirer" value="{{User.name}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="friend" class="control-label col-sm-3"><b>FRIEND:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="friend" placeholder="Love Grayson" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="friend" value="{{Friend.User.name}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="time" class="control-label col-sm-3"><b>Time (hour):</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="time" placeholder="5" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="time" value="{{hours}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="priceh" class="control-label col-sm-3"><b>Price/h:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="priceh" placeholder="1.000.000" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="priceh" value="{{Friend.price}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="total" class="control-label col-sm-3"><b>Total:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="total" placeholder="5.000.000" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="total" value="{{totalprice}}" readonly></div>
                     </div>
 
                     <div class="form-group row">
                         <label for="state" class="control-label col-sm-3"><b>State:</b></label>
-                        <div class="col-sm-9"><input type="text" class="form-control" id="state" placeholder="Completed" readonly></div>
+                        <div class="col-sm-9"><input type="text" class="form-control" id="state" value="{{status}}" readonly></div>
                     </div>
                 </div>
+                {{/with}}
 
             </div>
         </div>

@@ -1,3 +1,7 @@
-$('.clickable-tr').on('click', function() {
-    window.location.href = $(this).attr('href');
-});
+$('document').ready(() => {
+    $('.clickable-tr').click(() => {
+        var tmp = $(this).data('id');
+        alert(tmp);
+        window.location.href = 'transaction-detail';
+    });
+})
