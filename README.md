@@ -43,11 +43,21 @@ C. BackEnd
 
 7. Trở thành 1 friend X (chưa có chức năng duyệt của admin)
 
-8. Transaction (bao gồm thuê, tình trạng đơn hàng, xem lịch sử)
+8. Transaction X (bao gồm thuê, tình trạng đơn hàng, xem lịch sử)
 
-9. Feedback (bao gồm review và comment)
+9. Feedback X (bao gồm review và comment)
 
 10. Admin (chỉnh sửa thông tin, xem các biểu đồ, quản lý users)
+
+D. Bonus
+
+1. Đăng nhập vào thì không xem được mình, không thuê được
+
+2. Phân trang cho trang chủ
+
+3. Thống kê tiền nạp, tiền thuê của user
+
+4. Ban user, không delete user
 
 ## Guideline
 
