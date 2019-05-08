@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <form class="form-inline my-2 my-lg-0" action="/login-user/search">
                     <div class="input-group input-group-lg">
-                        <input name="name" type="text" class="form-control" id="search-text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter name...">
+                        <input id="maxsize" name="name" type="text" class="form-control" style="height: 48px" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Enter name...">
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text btn" id="search-btn">
                                 <i class="fa fa-search" style="color: #58C9EF"></i>
@@ -17,7 +17,7 @@
                     </div>
                 </form>
 
-                <button class="btn btn-sm btn-custom ml-3" type="button" style="font-size: 1.25em; width: 100px;" data-toggle="modal" data-target="#filtermodal">Filter</button>
+                <button class="btn btn-sm btn-custom ml-3" type="button" style="font-size: 1.25em; width: 100px;" data-toggle="modal" data-target="#filtermodallogin">Filter</button>
 
                 <div class="navbar-collapse justify-content-end">
                     <ul class="navbar-nav mt-2 mt-lg-0" id="navright" style="font-size: 1.25em;">
@@ -48,3 +48,33 @@
             </div>
         </nav>
     </div>
+
+
+
+    
+<script>
+    $(document).ready(function() {
+    var options = {
+    data: [],
+    getValue: "name",
+        template: {
+        type: "iconLeft",
+        fields: {
+            iconSrc: "icon"
+        }
+    },
+    list: {
+        maxNumberOfElements: 4,
+        match: {
+            enabled: true
+        },
+}
+}
+    {{#each users}}
+     options.data.push({name:"{{name}}",icon: "{{imagepath}}"})
+   {{/each}}
+
+    $("#maxsize").easyAutocomplete(options);
+                });
+
+</script>
