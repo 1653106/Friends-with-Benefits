@@ -11,10 +11,14 @@ const Op = sequelize.Op;
 
 //Load friendlist
 userController.getAllFriend = (req, res, next) => {
+    console.log(req.session.userid);
     User.findAll({
         limit: 4,
         include: [models.Friend],
         where: {
+            id: {
+                [Op.not]: req.session.userid
+            },
             role: 'f'
         }
     }).then(users => {
@@ -22,6 +26,65 @@ userController.getAllFriend = (req, res, next) => {
         next();
     });
 };
+
+userController.getDetail = (req, res, next) => {
+    Friend.findOne({
+        include: [{
+                model: models.User,
+            },
+            {
+                required: false,
+                model: models.Feedback,
+                where: {
+                    UserId: {
+                        [Op.not]: null
+                    }
+                },
+                include: {
+                    model: models.User,
+                }
+            }
+        ],
+        where: {
+            UserId: req.session.userid,
+        }
+    }).then(friend => {
+        let page = req.query.page || 1;
+        let pageLimit = 3;
+        let offset = (page - 1) * pageLimit;
+
+        if (friend.Feedbacks.length < 1) {
+            pagination = null;
+        } else {
+            let pagination = {
+                page: parseInt(page),
+                limit: pageLimit,
+                totalRows: friend.Feedbacks.length
+            };
+
+            friend.Feedbacks.sort((a, b) => {
+                return new Date(b.updatedAt) - new Date(a.updatedAt);
+            });
+
+            res.locals.pagination = pagination;
+            friend.Feedbacks = friend.Feedbacks.slice(offset, offset + pageLimit);
+        }
+
+        res.locals.friend = friend;
+
+        //--------------------------------------------------------------------
+
+        sumReview = 0;
+        let count = 0;
+        friend.Feedbacks.forEach(element => {
+            sumReview += element.rate;
+            count++;
+        })
+
+        res.locals.avgReview = Math.round((sumReview / count) * 100) / 100;
+        next();
+    });
+}
 
 //Load friend detail
 userController.getFriendDetail = (req, res, next) => {

@@ -42,8 +42,14 @@ userRouter.get('/about', (req, res) => {
     req.session.current_url = '/login-user/about';
 });
 
+//details
+userRouter.get('/details', userController.getDetail, (req, res) => {
+    res.render('details');
+    req.session.current_url = '/login-user/details';
+});
+
 //friend details login
-userRouter.get(('/friend-details/:UserId'), userController.getFriendDetail, (req, res) => {
+userRouter.get('/friend-details/:UserId', userController.getFriendDetail, (req, res) => {
     req.session.friendId = req.params.UserId;
     res.render('friend-details-login');
     req.session.current_url = '/login-user/friend-details/' + req.params.UserId;

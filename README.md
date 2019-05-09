@@ -51,7 +51,7 @@ C. BackEnd
 
 D. Bonus
 
-1. Đăng nhập vào thì không xem được mình, không thuê được
+1. Đăng nhập vào thì không xem được mình, không thuê được X
 
 2. Phân trang cho trang chủ
 
