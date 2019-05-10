@@ -13,7 +13,6 @@ const Op = sequelize.Op;
 userController.getAllFriend = (req, res, next) => {
     console.log(req.session.userid);
     User.findAll({
-        limit: 4,
         include: [models.Friend],
         where: {
             id: {
@@ -22,6 +21,28 @@ userController.getAllFriend = (req, res, next) => {
             role: 'f'
         }
     }).then(users => {
+        res.locals.autocomplete = users;
+
+        let page = req.query.page || 1;
+        let pageLimit = 8;
+        let offset = (page - 1) * pageLimit;
+
+        let pagination = {
+            page: parseInt(page),
+            limit: pageLimit,
+            totalRows: users.length
+        };
+
+        if (users.length < 1) {
+            pagination = null;
+        }
+
+        users.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+
+        res.locals.pagination = pagination;
+        users = users.slice(offset, offset + pageLimit);
         res.locals.users = users;
         next();
     });
@@ -74,7 +95,7 @@ userController.getDetail = (req, res, next) => {
 
         //--------------------------------------------------------------------
 
-        sumReview = 0;
+        let sumReview = 0;
         let count = 0;
         friend.Feedbacks.forEach(element => {
             sumReview += element.rate;
@@ -286,7 +307,7 @@ userController.becomeFriend = (req, res) => {
                             UserId: user.id
                         }
                     }).then(() => {
-                        res.redirect('friend-details/' + user.id);
+                        res.redirect('details');
                     }).catch(error => {
                         res.send(error);
                     });
@@ -298,7 +319,7 @@ userController.becomeFriend = (req, res) => {
                         detail: req.body.detail,
                         status: (req.body.status == 'on') ? 1 : 0
                     }).then(() => {
-                        res.redirect('friend-details/' + user.id);
+                        res.redirect('details');
                     }).catch(error => {
                         res.send(error);
                     });

@@ -1,5 +1,5 @@
 <!--Hot friends-->
-<div class="container py-3">
+<!-- <div class="container py-3">
     <div>
         <h2 style="color: #58C9EF">HOT FRIENDS
             <a href="/" class="btn btn-sm btn-custom btn-refresh" role="button">
@@ -26,6 +26,11 @@
         {{/each}}
     </div>
 </div>
+
+<div class="row text-center py-3">
+    {{{ paginate paginationHot leftText="Prev" rightText="Next" limit="4" paginationClass="pagination-style btn btn-custom"}}}
+</div> -->
+
 <!--Recent friends-->
 <div class="container py-3">
     <div>
@@ -39,7 +44,7 @@
 
     <div class="row">
         {{#each users}}
-        <div class="col col-md-3">
+        <div class="col col-md-3 py-3">
             <a href="friend-details/{{Friend.UserId}}">
                 <div class="card card-friend h-100">
                     <img class="card-img-top" src="{{imagepath}}" style="object-fit: cover" height="250px" alt="avatar">
@@ -53,12 +58,11 @@
                 </div>
             </a>
         </div>
-        {{/each}}
+        {{/each}}  
     </div>
 </div>
+
 <!--Page navigation-->
-<div class="container py-3 text-center">
-    <a href="#" class="btn btn-sm btn-custom mx-2" role="button">Previous page</a>
-    <a href="#" class="btn btn-sm btn-custom-reverse mx-2" role="button">1</a>
-    <a href="#" class="btn btn-sm btn-custom mx-2" role="button">Next page</a>
+<div class="row text-center py-3">
+    {{{ paginate pagination leftText="Prev" rightText="Next" limit="4" paginationClass="pagination-style btn btn-custom"}}}
 </div>

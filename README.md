@@ -53,7 +53,7 @@ D. Bonus
 
 1. Đăng nhập vào thì không xem được mình, không thuê được X
 
-2. Phân trang cho trang chủ
+2. Phân trang cho trang chủ X
 
 3. Thống kê tiền nạp, tiền thuê của user
 

@@ -57,15 +57,67 @@ controller.register = (req, res) => {
 //Load friendlist
 controller.getAllFriend = (req, res, next) => {
     User.findAll({
-        limit: 4,
         include: [models.Friend],
         where: {
             role: 'f'
         }
     }).then(users => {
+        res.locals.autocomplete = users;
+
+        let page = req.query.page || 1;
+        let pageLimit = 8;
+        let offset = (page - 1) * pageLimit;
+
+        let pagination = {
+            page: parseInt(page),
+            limit: pageLimit,
+            totalRows: users.length
+        };
+
+        if (users.length < 1) {
+            pagination = null;
+        }
+
+        users.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+
+        res.locals.pagination = pagination;
+        users = users.slice(offset, offset + pageLimit);
         res.locals.users = users;
         next();
     });
+
+    // User.findAll({
+    //     limit: 4,
+    //     include: [models.Friend],
+    //     where: {
+    //         role: 'f'
+    //     }
+    // }).then(hotusers => {
+    //     let page = req.query.page || 1;
+    //     let pageLimit = 4;
+    //     let offset = (page - 1) * pageLimit;
+
+    //     let paginationHot = {
+    //         page: parseInt(page),
+    //         limit: pageLimit,
+    //         totalRows: hotusers.length
+    //     };
+
+    //     if (users.length < 1) {
+    //         paginationHot = null;
+    //     }
+
+    //     hotusers.sort((a, b) => {
+    //         return b.Friend.price - a.friend.price;
+    //     });
+
+    //     res.locals.paginationHot = paginationHot;
+    //     hotusers = hotusers.slice(offset, offset + pageLimit);
+    //     res.locals.hotusers = hotusers;
+    //     next();
+    // });
 };
 
 //Load friend detail
@@ -85,7 +137,13 @@ controller.getFriendDetail = (req, res, next) => {
                 model: models.User,
             },
             {
+                required: false,
                 model: models.Feedback,
+                where: {
+                    UserId: {
+                        [Op.not]: null
+                    }
+                },
                 include: {
                     model: models.User
                 }
@@ -95,7 +153,6 @@ controller.getFriendDetail = (req, res, next) => {
             UserId: req.params.UserId
         }
     }).then(friend => {
-        console.log(friend.Feedbacks.length);
         let page = req.query.page || 1;
         let pageLimit = 3;
         let offset = (page - 1) * pageLimit;
