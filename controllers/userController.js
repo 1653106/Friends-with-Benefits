@@ -52,6 +52,9 @@ userController.getDetail = (req, res, next) => {
     Friend.findOne({
         include: [{
                 model: models.User,
+                where: {
+                    role: 'f'
+                }
             },
             {
                 required: false,
@@ -70,6 +73,10 @@ userController.getDetail = (req, res, next) => {
             UserId: req.session.userid,
         }
     }).then(friend => {
+        if (friend == null) {
+            res.redirect('/login-user/settings-friend');
+        }
+
         let page = req.query.page || 1;
         let pageLimit = 3;
         let offset = (page - 1) * pageLimit;
