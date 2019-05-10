@@ -29,7 +29,7 @@
                             <a href="admin-users-chart">
                                 <div class="card border-custom" style="width: 9em">
                                     <div class="card-body bg-custom text-white text-center">
-                                        <h4 class="card-title icon-dashboard"><i class="fa fa-user-plus"></i> <span class="px-3">30</span></h4>
+                                        <h4 class="card-title icon-dashboard"><i class="fa fa-user-plus"></i> <span class="px-3">{{totalAccount}}</span></h4>
                                     </div>
 
                                     <div class="card-footer">
@@ -41,7 +41,7 @@
                             <a href="admin-transactions-chart">
                                 <div class="card border-custom" style="width: 9em">
                                     <div class="card-body bg-custom text-white text-center">
-                                        <h4 class="card-title icon-dashboard"><i class="fa fa-file"></i><span class="px-3">20</span></h4>
+                                        <h4 class="card-title icon-dashboard"><i class="fa fa-file"></i><span class="px-3">{{totalTransactions}}</span></h4>
                                     </div>
 
                                     <div class="card-footer">
@@ -64,6 +64,16 @@
                     <div class="row">
                         <h5>Gender</h5>
                         <canvas id="gender-chart"></canvas>
+                    </div>
+
+                    <div class="row">
+                        <h5>Users</h5>
+                        <canvas id="user-chart"></canvas>
+                    </div>
+
+                    <div class="row">
+                        <h5>Transaction</h5>
+                        <canvas id="transaction-chart"></canvas>
                     </div>
                 </div>
             </div>

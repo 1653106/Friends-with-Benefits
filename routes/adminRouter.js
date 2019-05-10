@@ -10,7 +10,7 @@ adminRouter.get('/', (req, res) => {
     req.session.current_url = '/login-admin/admin-dashboard';
 });
 
-adminRouter.get('/admin-dashboard', adminController.getGender);
+adminRouter.get('/admin-dashboard', adminController.countTotalUsers, adminController.countTransactions, adminController.getGender);
 
 //admin account
 adminRouter.get('/admin-account', adminController.countTotalUsers, adminController.countTotalFriends, adminController.loadAccount);
@@ -62,6 +62,9 @@ adminRouter.post('/upload-avatar', adminController.uploadAvatar);
 
 //delete account
 adminRouter.get('/delete/:id', adminController.deleteAccount);
+
+//date from to
+adminRouter.post('/generate-chart', adminController.generateChart);
 
 // //Post userchart
 // adminRouter.post('/user-chart',(req, res) => {

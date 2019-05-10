@@ -403,7 +403,7 @@ adminController.loadTransaction = (req, res) => {
     }).then(transactions => {
         res.locals.transactions = transactions;
         res.render('admin-transaction');
-        res.session.current_url = '/login-admin/admin-transaction';
+        req.session.current_url = '/login-admin/admin-transaction';
     })
 }
 
@@ -425,6 +425,42 @@ adminController.getTransactionByID = (req, res) => {
         res.render('admin-transaction-details');
         req.session.current_url = '/login-admin/admin-transaction-details';
     })
+}
+
+adminController.generateChart = (req, res) => {
+    //find date array
+    var dateArray = getDates(req.body.fromdate, req.body.todate);
+    var countArray = new Array();
+    var promises = new Array();
+
+    dateArray.forEach(element => {
+        promises.push(
+            User.count({
+                where: sequelize.where(sequelize.fn('date', sequelize.col('createdAt')), '=', element.toISOString().substring(0, 10))
+            }).then(count => {
+                countArray.push(count);
+            })
+        );
+
+    })
+
+    Promise.all(promises).then(() => {
+        console.log(countArray);
+        res.locals.accounts = countArray;
+        res.locals.fromdate = req.body.fromdate;
+        res.locals.todate = req.body.todate;
+        //res.redirect('/login-admin/admin-users-chart');
+    })
+}
+
+function getDates(startDate, stopDate) {
+    var dateArray = new Array();
+    var currentDate = new Date(startDate);
+    while (currentDate <= new Date(stopDate)) {
+        dateArray.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dateArray;
 }
 
 module.exports = adminController;
