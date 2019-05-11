@@ -430,7 +430,7 @@ adminController.generateChart = (req, res) => {
     //find date array
     var date=new Date();
     var firstdate=new Date(date.getFullYear(), date.getMonth()-1, 1);
-    var lastDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     var dateArray = getDates(firstdate.toISOString().substring(0, 10), lastDay.toISOString().substring(0, 10));
     var countUserArray = new Array();
     var countTransactionArray=new Array();
