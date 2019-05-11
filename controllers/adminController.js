@@ -85,7 +85,7 @@ adminController.uploadAvatar = function(req, res) {
     });
 };
 //Gender-chart
-adminController.getGender = function(req, res) {
+adminController.getGender = function(req, res,next) {
     User.count({
         where: {
             gender: "f"
@@ -110,8 +110,7 @@ adminController.getGender = function(req, res) {
                     }
                 }).then(count => {
                     res.locals.null = count;
-                    res.render('admin-dashboard');
-                    req.session.current_url = '/login-admin/admin-dashboard';
+                    next();
                 })
             })
         })
@@ -429,8 +428,12 @@ adminController.getTransactionByID = (req, res) => {
 
 adminController.generateChart = (req, res) => {
     //find date array
-    var dateArray = getDates(req.body.fromdate, req.body.todate);
-    var countArray = new Array();
+    var date=new Date();
+    var firstdate=new Date(date.getFullYear(), date.getMonth()-1, 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var dateArray = getDates(firstdate.toISOString().substring(0, 10), lastDay.toISOString().substring(0, 10));
+    var countUserArray = new Array();
+    var countTransactionArray=new Array();
     var promises = new Array();
 
     dateArray.forEach(element => {
@@ -438,24 +441,28 @@ adminController.generateChart = (req, res) => {
             User.count({
                 where: sequelize.where(sequelize.fn('date', sequelize.col('createdAt')), '=', element.toISOString().substring(0, 10))
             }).then(count => {
-                countArray.push(count);
+                countUserArray.push(count);
+            }),
+            Transaction.count({
+                where: sequelize.where(sequelize.fn('date', sequelize.col('createdAt')), '=', element.toISOString().substring(0, 10))
+            }).then(count => {
+                countTransactionArray.push(count);
             })
         );
-
     })
 
     Promise.all(promises).then(() => {
-        console.log(countArray);
-        res.locals.accounts = countArray;
-        res.locals.fromdate = req.body.fromdate;
-        res.locals.todate = req.body.todate;
-        //res.redirect('/login-admin/admin-users-chart');
+        res.locals.accounts = countUserArray;
+        res.locals.transactions=countTransactionArray;
+        res.render('admin-dashboard');
+        req.session.current_url = '/login-admin/admin-dashboard';
     })
 }
 
 function getDates(startDate, stopDate) {
     var dateArray = new Array();
     var currentDate = new Date(startDate);
+    currentDate.setDate(currentDate.getDate() + 1);
     while (currentDate <= new Date(stopDate)) {
         dateArray.push(new Date(currentDate));
         currentDate.setDate(currentDate.getDate() + 1);

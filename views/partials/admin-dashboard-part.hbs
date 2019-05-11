@@ -26,7 +26,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="card-deck mx-auto">
-                            <a href="admin-users-chart">
                                 <div class="card border-custom" style="width: 9em">
                                     <div class="card-body bg-custom text-white text-center">
                                         <h4 class="card-title icon-dashboard"><i class="fa fa-user-plus"></i> <span class="px-3">{{totalAccount}}</span></h4>
@@ -36,9 +35,7 @@
                                         <p class="card-text"><b>Users</b></p>
                                     </div>
                                 </div>
-                            </a>
 
-                            <a href="admin-transactions-chart">
                                 <div class="card border-custom" style="width: 9em">
                                     <div class="card-body bg-custom text-white text-center">
                                         <h4 class="card-title icon-dashboard"><i class="fa fa-file"></i><span class="px-3">{{totalTransactions}}</span></h4>
@@ -48,7 +45,6 @@
                                         <p class="card-text"><b>Transactions</b></p>
                                     </div>
                                 </div>
-                            </a>
 
                         </div>
                     </div>
@@ -56,11 +52,6 @@
 
                 <div class="container py-3">
                     <h3 class="text-center"><b>Statitics</b></h3>
-                    {{!-- <div class="row">
-                        <h5>Revenue</h5>
-                        <canvas id="revenue-chart"></canvas>
-                    </div> --}}
-
                     <div class="row">
                         <h5>Gender</h5>
                         <canvas id="gender-chart"></canvas>
@@ -68,7 +59,7 @@
 
                     <div class="row">
                         <h5>Users</h5>
-                        <canvas id="user-chart"></canvas>
+                        <canvas id="users-chart"></canvas>
                     </div>
 
                     <div class="row">
@@ -80,6 +71,26 @@
         </div>
     </div>
 </div>
+<script>
+var date=new Date();
+var firstdate=new Date(date.getFullYear(), date.getMonth()-1, 1);
+var lastDay = new Date(date.getFullYear(), date.getMonth(), 1);
+var dateArray = getDates(firstdate.toISOString().substring(0, 10), lastDay.toISOString().substring(0, 10));
+var dateArray1=new Array();
+dateArray.forEach(element => {
+    dateArray1.push(element.toISOString().substring(0, 10));
+})
+function getDates(startDate, stopDate) {
+    var dateArray = new Array();
+    var currentDate = new Date(startDate);
+    currentDate.setDate(currentDate.getDate() + 1);
+    while (currentDate <= new Date(stopDate)) {
+        dateArray.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dateArray;
+}  
+</script>
 <script>
 //gender chart
 var ctx = document.getElementById('gender-chart').getContext('2d');
@@ -103,4 +114,51 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 })
+</script>
+<script>
+//user chart
+var ctx = document.getElementById('users-chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        
+            // The type of chart we want to create
+            type: 'line',
+            
+            // The data for our dataset
+            data: {
+                labels: dateArray1,
+                datasets: [{
+                    label: 'Users',
+                    backgroundColor: 'rgba(255, 173, 88, 0.5)',
+                    borderColor: 'rgba(88, 201, 239, 0.5)',
+                    data: [{{accounts}}]
+                }]
+            },
+        
+            // Configuration options go here
+            options: {}
+    });   
+</script>
+
+<script>
+//user chart
+var ctx = document.getElementById('transaction-chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        
+            // The type of chart we want to create
+            type: 'line',
+            
+            // The data for our dataset
+            data: {
+                labels: dateArray1,
+                datasets: [{
+                    label: 'Transactions',
+                    backgroundColor: 'rgba(255, 173, 88, 0.5)',
+                    borderColor: 'rgba(88, 201, 239, 0.5)',
+                    data: [{{transactions}}]
+                }]
+            },
+        
+            // Configuration options go here
+            options: {}
+    });   
 </script>

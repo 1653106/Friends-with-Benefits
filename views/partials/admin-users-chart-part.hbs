@@ -24,54 +24,37 @@
                 </div>
 
                 <!-- Calendar -->
-                <!-- <div class="bootstrap-iso">
+                <div class="bootstrap-iso">
                     <div class="container-fluid">
                         <div class="row">
-                            <form id="datefromto" action="generate-chart" method="POST">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label " for="fromdate">From date:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input class="form-control" id="fromdate" name="fromdate" placeholder="MM/DD/YYYY" type="date" />
-                                    </div>
-                                </div>
 
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label " for="todate">To date:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input class="form-control" id="todate" name="todate" placeholder="MM/DD/YYYY" type="date" />
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="container">
-                    <div class="row container">
-                        <form id="datefromto" action="generate-chart" method="post">
-                            <div class="px-3" style="float: left">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label " for="fromdate">From date:</label>
-                                <input type="date" class="form-control" id="fromdate" name="fromdate" value="{{fromdate}}" />
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input class="form-control" id="fromdate" name="date" placeholder="MM/DD/YYYY" type="date" />
+                                </div>
                             </div>
 
-                            <div class="px-3" style="float: left">
-                                <label class="control-label " for="todate">From date:</label>
-                                <input type="date" class="form-control" id="todate" name="todate" value="{{todate}}" />
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label " for="todate">To date:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input class="form-control" id="todate" name="date" placeholder="MM/DD/YYYY" type="date" />
+                                </div>
                             </div>
 
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <!-- Chart -->
                 <div class="container">
                     <div class="row">
-                        <h2><b>Users<br></b></h2>
+                        <h2><b>New users<br></b></h2>
                     </div>
                 </div>
 
@@ -86,39 +69,6 @@
                         <h5>Gender</h5>
                         <canvas id="gender-chart"></canvas>
                     </div>
-
-                    <script>
-                        $(document).ready(() => {
-                            var fromdate = new Date($('#fromdate').val());
-                            var todate = new Date($('#todate').val());
-                            //find date array
-                            dateArray = getDates(fromdate, todate);
-
-                            var ctx = document.getElementById('users-chart').getContext('2d');
-                            var chart = new Chart(ctx, {
-
-                                // The type of chart we want to create
-                                type: 'line',
-
-                                // The data for our dataset
-                                data: {
-                                    labels: dateArray,
-                                    datasets: [{
-                                        label: 'Users',
-                                        backgroundColor: 'rgba(255, 173, 88, 0.5)',
-                                        borderColor: 'rgba(88, 201, 239, 0.5)',
-                                        data: {{accounts}}
-                                    }]
-                                },
-
-                                // Configuration options go here
-                                options: {}
-                            });
-
-                            if (dateArray.length == 0)
-                                chart.destroy();
-                        })
-                    </script>
                 </div>
             </div>
         </div>
@@ -126,62 +76,105 @@
 </div>
 
 <script>
-    $("#todate, #fromdate").on("change dp.change", function(e) {
-        //get date
+    //users chart
+$("#todate").on("change dp.change", function (e){
+    //get date
+    if($("#fromdate").val()!="")
+    {
+        var fromdate = new Date($('#fromdate').val());
+        var todate = new Date($('#todate').val());
+        //find date array
+        dateArray=getDates(fromdate,todate);
 
-        if ($("#fromdate").val() != "" && $("#todate").val() != "") {
-            $('#datefromto').submit(e => {
-                e.preventDefault();
-            });
-        }
-    })
-
-    //from date dp change event
-    /*$("#fromdate").on("change dp.change", function (e){
-
-        //get date
-        if($("#todate").val()!="")
-        {
-            var fromdate = new Date($('#fromdate').val());
-            var todate = new Date($('#todate').val());
-
-            //find date array
-            dateArray=getDates(fromdate,todate);
+        {{!-- var requestMedia = $.ajax({
+        url: "/userchart",
+        type: "POST",
+        data: JSON.stringify(dateArray),
+        dataType: "json",
+        cache: false, 
+        contentType: "application/json",
+    });
+     requestMedia.done(function (data) {
+            if (data.status) {
+                alert_message("success");
+            } else {
+                alert_message("fail");
+                // TODO: Handle not uploaded media
+            }
+            return;
+        }); --}}
+        var ctx = document.getElementById('users-chart').getContext('2d');
+        var chart = new Chart(ctx, {
+    
+            // The type of chart we want to create
+            type: 'line',
         
-            var ctx = document.getElementById('users-chart').getContext('2d');
-            var chart = new Chart(ctx, {
-            
-                // The type of chart we want to create
-                type: 'line',
-                
-                // The data for our dataset
-                data: {
-                    labels: dateArray,//Nhãn dưới
-                    datasets: [{
-                        label: 'Guests',
-                        backgroundColor: 'rgba(255, 173, 88, 0.5)',
-                        borderColor: 'rgba(88, 201, 239, 0.5)',
-                        data: [0, 5, 20]
-                    }]
-                },
-            
-                // Configuration options go here
-                options: {}
-            });
-            if(dateArray.length==0)
-                chart.destroy();
-        }
-    })*/
+            // The data for our dataset
+            data: {
+                labels: dateArray,//Nhãn dưới
+                datasets: [{
+                    label: 'Users',
+                    backgroundColor: 'rgba(255, 173, 88, 0.5)',
+                    borderColor: 'rgba(88, 201, 239, 0.5)',
+                    data: [0, 5, 20]
+                }]
+            },
+    
+            // Configuration options go here
+            options: {}
+        });
 
-    //function find date array
-    function getDates(startDate, stopDate) {
-        var dateArray = [];
-        var currentDate = moment(startDate);
-        var stopDate = moment(stopDate);
-        while (currentDate <= stopDate) {
-            dateArray.push(moment(currentDate).format('DD/MM/YYYY'))
-            currentDate = moment(currentDate).add(1, 'days');
-        }
-        return dateArray;
+    if(dateArray.length==0)
+        chart.destroy();
     }
+})
+
+//from date dp change event
+$("#fromdate").on("change dp.change", function (e){
+
+    //get date
+    if($("#todate").val()!="")
+    {
+        var fromdate = new Date($('#fromdate').val());
+        var todate = new Date($('#todate').val());
+
+        //find date array
+        dateArray=getDates(fromdate,todate);
+    
+        var ctx = document.getElementById('users-chart').getContext('2d');
+        var chart = new Chart(ctx, {
+        
+            // The type of chart we want to create
+            type: 'line',
+            
+            // The data for our dataset
+            data: {
+                labels: dateArray,//Nhãn dưới
+                datasets: [{
+                    label: 'Guests',
+                    backgroundColor: 'rgba(255, 173, 88, 0.5)',
+                    borderColor: 'rgba(88, 201, 239, 0.5)',
+                    data: [0, 5, 20]
+                }]
+            },
+        
+            // Configuration options go here
+            options: {}
+        });
+        if(dateArray.length==0)
+            chart.destroy();
+    }
+})
+
+//function find date array
+function getDates(startDate, stopDate) {
+    var dateArray = [];
+    var currentDate = moment(startDate);
+    var stopDate = moment(stopDate);
+    while (currentDate <= stopDate) {
+        dateArray.push( moment(currentDate).format('DD/MM/YYYY') )
+        currentDate = moment(currentDate).add(1, 'days');
+    }
+    return dateArray;
+}
 </script>
